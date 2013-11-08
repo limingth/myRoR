@@ -300,5 +300,40 @@ http://stackoverflow.com/questions/17257830/error-when-installing-ruby-requireme
       
     limingth@gmail ~$ 
     
+### install rails
 
+    limingth@gmail ~$ sudo gem install rails
+Password:
 
+Building native extensions.  This could take a while...
+ERROR:  Error installing rails:
+	activesupport requires Ruby version >= 1.9.3.
+limingth@gmail ~$ 
+
+#### change ruby links
+    
+    limingth@gmail ~$ ruby -v
+    ruby 1.8.7 (2012-02-08 patchlevel 358) [universal-darwin12.0]
+
+    limingth@gmail ~$ which ruby
+    /usr/bin/ruby
+    
+    limingth@gmail ~$ which ruby-2.0.0-p247
+    /Users/limingth/.rvm/bin/ruby-2.0.0-p247
+    
+    limingth@gmail ~$ sudo mv /usr/bin/ruby /usr/bin/ruby-1.8.7
+    Password:
+    limingth@gmail ~$ sudo ln -s /Users/limingth/.rvm/bin/ruby-2.0.0-p247 /usr/bin/ruby
+
+    limingth@gmail ~$ ruby -v
+    ruby 2.0.0p247 (2013-06-27 revision 41674) [x86_64-darwin12.4.0]
+
+### Install rails
+    
+    limingth@gmail ~$ sudo gem install rails
+    Password:
+    ERROR:  Error installing rails:
+    	activesupport requires Ruby version >= 1.9.3.
+    limingth@gmail ~$ 
+    
+**stucked here**
