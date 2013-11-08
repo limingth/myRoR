@@ -1,4 +1,3 @@
-
 # How To Install
 
 ## Install RVM
