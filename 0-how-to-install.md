@@ -471,7 +471,19 @@ limingth@gmail ~$
 	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/tab_yellow.png, skipping
 	unable to convert "\xFF" from ASCII-8BIT to UTF-8 for guides/assets/images/vijaydev.jpg, skipping
 	Installing ri documentation for rails-4.0.1
-
+	Parsing documentation for railties-4.0.1
+	Installing ri documentation for railties-4.0.1
+	Parsing documentation for sprockets-2.10.0
+	Installing ri documentation for sprockets-2.10.0
+	Parsing documentation for sprockets-rails-2.0.1
+	Installing ri documentation for sprockets-rails-2.0.1
+	Parsing documentation for thor-0.18.1
+	Installing ri documentation for thor-0.18.1
+	Parsing documentation for tilt-1.4.1
+	Installing ri documentation for tilt-1.4.1
+	Parsing documentation for treetop-1.4.15
+	Installing ri documentation for treetop-1.4.15
+	14 gems installed
 
 ### Test 'rails' command
 	
