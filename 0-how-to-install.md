@@ -538,3 +538,146 @@ limingth@gmail ~$
 	    This generates a skeletal Rails installation in ~/Code/Ruby/weblog.
 	    See the README in the newly created application to get going.
 
+### Test rails example 
+	
+	limingth@gmail ~/myRoR$ rails new ~/Code/Ruby/weblog 
+	      create  
+	      create  README.rdoc
+	      create  Rakefile
+	      create  config.ru
+	      create  .gitignore
+	      create  Gemfile
+	      create  app
+	      create  app/assets/javascripts/application.js
+	      create  app/assets/stylesheets/application.css
+	      create  app/controllers/application_controller.rb
+	      create  app/helpers/application_helper.rb
+	      create  app/views/layouts/application.html.erb
+	      create  app/assets/images/.keep
+	      create  app/mailers/.keep
+	      create  app/models/.keep
+	      create  app/controllers/concerns/.keep
+	      create  app/models/concerns/.keep
+	      create  bin
+	      create  bin/bundle
+	      create  bin/rails
+	      create  bin/rake
+	      create  config
+	      create  config/routes.rb
+	      create  config/application.rb
+	      create  config/environment.rb
+	      create  config/environments
+	      create  config/environments/development.rb
+	      create  config/environments/production.rb
+	      create  config/environments/test.rb
+	      create  config/initializers
+	      create  config/initializers/backtrace_silencers.rb
+	      create  config/initializers/filter_parameter_logging.rb
+	      create  config/initializers/inflections.rb
+	      create  config/initializers/mime_types.rb
+	      create  config/initializers/secret_token.rb
+	      create  config/initializers/session_store.rb
+	      create  config/initializers/wrap_parameters.rb
+	      create  config/locales
+	      create  config/locales/en.yml
+	      create  config/boot.rb
+	      create  config/database.yml
+	      create  db
+	      create  db/seeds.rb
+	      create  lib
+	      create  lib/tasks
+	      create  lib/tasks/.keep
+	      create  lib/assets
+	      create  lib/assets/.keep
+	      create  log
+	      create  log/.keep
+	      create  public
+	      create  public/404.html
+	      create  public/422.html
+	      create  public/500.html
+	      create  public/favicon.ico
+	      create  public/robots.txt
+	      create  test/fixtures
+	      create  test/fixtures/.keep
+	      create  test/controllers
+	      create  test/controllers/.keep
+	      create  test/mailers
+	      create  test/mailers/.keep
+	      create  test/models
+	      create  test/models/.keep
+	      create  test/helpers
+	      create  test/helpers/.keep
+	      create  test/integration
+	      create  test/integration/.keep
+	      create  test/test_helper.rb
+	      create  tmp/cache
+	      create  tmp/cache/assets
+	      create  vendor/assets/javascripts
+	      create  vendor/assets/javascripts/.keep
+	      create  vendor/assets/stylesheets
+	      create  vendor/assets/stylesheets/.keep
+	         run  bundle install
+	
+	Fetching gem metadata from https://rubygems.org/..........
+	Fetching gem metadata from https://rubygems.org/..
+	Resolving dependencies...
+	Installing rake (10.1.0) 
+	Using i18n (0.6.5) 
+	Installing minitest (4.7.5) 
+	Using multi_json (1.8.2) 
+	Using atomic (1.1.14) 
+	Using thread_safe (0.1.3) 
+	Using tzinfo (0.3.38) 
+	Using activesupport (4.0.1) 
+	Using builder (3.1.4) 
+	Using erubis (2.7.0) 
+	Using rack (1.5.2) 
+	Using rack-test (0.6.2) 
+	Using actionpack (4.0.1) 
+	Using mime-types (1.25) 
+	Using polyglot (0.3.3) 
+	Using treetop (1.4.15) 
+	Using mail (2.5.4) 
+	Using actionmailer (4.0.1) 
+	Using activemodel (4.0.1) 
+	Using activerecord-deprecated_finders (1.0.3) 
+	Using arel (4.0.1) 
+	Using activerecord (4.0.1) 
+	Using bundler (1.3.5) 
+	Installing coffee-script-source (1.6.3) 
+	Installing execjs (2.0.2) 
+	Installing coffee-script (2.2.0) 
+	Using thor (0.18.1) 
+	Using railties (4.0.1) 
+	Installing coffee-rails (4.0.1) 
+	Using hike (1.2.3) 
+	Installing jbuilder (1.5.2) 
+	Installing jquery-rails (3.0.4) 
+	Installing json (1.8.1) 
+	Using tilt (1.4.1) 
+	Using sprockets (2.10.0) 
+	Using sprockets-rails (2.0.1) 
+	Using rails (4.0.1) 
+	Installing rdoc (3.12.2) 
+	Installing sass (3.2.12) 
+	Installing sass-rails (4.0.1) 
+	Installing sdoc (0.3.20) 
+	Installing sqlite3 (1.3.8) 
+	Installing turbolinks (1.3.0) 
+	Installing uglifier (2.3.1) 
+	Your bundle is complete!
+	Use `bundle show [gemname]` to see where a bundled gem is installed.
+	Post-install message from rdoc:
+	Depending on your version of ruby, you may need to install ruby rdoc/ri data:
+	
+	<= 1.8.6 : unsupported
+	 = 1.8.7 : gem install rdoc-data; rdoc-data --install
+	 = 1.9.1 : gem install rdoc-data; rdoc-data --install
+	>= 1.9.2 : nothing to do! Yay!
+	
+	limingth@gmail ~/myRoR$ cd ~/Code/Ruby/weblog/
+	limingth@gmail ~/Code/Ruby/weblog$ ls
+	Gemfile		Rakefile	config		lib		test
+	Gemfile.lock	app		config.ru	log		tmp
+	README.rdoc	bin		db		public		vendor
+	limingth@gmail ~/Code/Ruby/weblog$ 
