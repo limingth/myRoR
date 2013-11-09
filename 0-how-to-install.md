@@ -337,3 +337,192 @@ limingth@gmail ~$
     limingth@gmail ~$ 
     
 **stucked here**
+
+### Install rails AGAIN
+	
+	limingth@gmail ~/myRoR$ sudo gem install rails
+	Password:
+	Fetching: activerecord-deprecated_finders-1.0.3.gem (100%)
+	Successfully installed activerecord-deprecated_finders-1.0.3
+	Fetching: activerecord-4.0.1.gem (100%)
+	Successfully installed activerecord-4.0.1
+	Fetching: mime-types-1.25.gem (100%)
+	Successfully installed mime-types-1.25
+	Fetching: polyglot-0.3.3.gem (100%)
+	Successfully installed polyglot-0.3.3
+	Fetching: treetop-1.4.15.gem (100%)
+	Successfully installed treetop-1.4.15
+	Fetching: mail-2.5.4.gem (100%)
+	Successfully installed mail-2.5.4
+	Fetching: actionmailer-4.0.1.gem (100%)
+	Successfully installed actionmailer-4.0.1
+	Fetching: thor-0.18.1.gem (100%)
+	Successfully installed thor-0.18.1
+	Fetching: railties-4.0.1.gem (100%)
+	Successfully installed railties-4.0.1
+	Fetching: hike-1.2.3.gem (100%)
+	Successfully installed hike-1.2.3
+	Fetching: tilt-1.4.1.gem (100%)
+	Successfully installed tilt-1.4.1
+	Fetching: sprockets-2.10.0.gem (100%)
+	Successfully installed sprockets-2.10.0
+	Fetching: sprockets-rails-2.0.1.gem (100%)
+	Successfully installed sprockets-rails-2.0.1
+	Fetching: rails-4.0.1.gem (100%)
+	Successfully installed rails-4.0.1
+	Parsing documentation for actionmailer-4.0.1
+	Installing ri documentation for actionmailer-4.0.1
+	Parsing documentation for activerecord-4.0.1
+	Installing ri documentation for activerecord-4.0.1
+	Parsing documentation for activerecord-deprecated_finders-1.0.3
+	Installing ri documentation for activerecord-deprecated_finders-1.0.3
+	Parsing documentation for hike-1.2.3
+	Installing ri documentation for hike-1.2.3
+	Parsing documentation for mail-2.5.4
+	unable to convert "\x80" from ASCII-8BIT to UTF-8 for lib/mail/values/unicode_tables.dat, skipping
+	Installing ri documentation for mail-2.5.4
+	Parsing documentation for mime-types-1.25
+	Installing ri documentation for mime-types-1.25
+	Parsing documentation for polyglot-0.3.3
+	Installing ri documentation for polyglot-0.3.3
+	Parsing documentation for rails-4.0.1
+	unable to convert "\xFF" from ASCII-8BIT to UTF-8 for guides/assets/images/akshaysurve.jpg, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/belongs_to.png, skipping
+	unable to convert "\xF4" from ASCII-8BIT to UTF-8 for guides/assets/images/book_icon.gif, skipping
+	unable to convert "\x91" from ASCII-8BIT to UTF-8 for guides/assets/images/bullet.gif, skipping
+	unable to convert "\xF5" from ASCII-8BIT to UTF-8 for guides/assets/images/chapters_icon.gif, skipping
+	unable to convert "\xF5" from ASCII-8BIT to UTF-8 for guides/assets/images/check_bullet.gif, skipping
+	unable to convert "\xF4" from ASCII-8BIT to UTF-8 for guides/assets/images/credits_pic_blank.gif, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/csrf.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/edge_badge.png, skipping
+	unable to convert "\x9E" from ASCII-8BIT to UTF-8 for guides/assets/images/favicon.ico, skipping
+	unable to convert "\x80" from ASCII-8BIT to UTF-8 for guides/assets/images/feature_tile.gif, skipping
+	unable to convert "\x80" from ASCII-8BIT to UTF-8 for guides/assets/images/footer_tile.gif, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/fxn.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/getting_started/challenge.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/getting_started/confirm_dialog.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/getting_started/forbidden_attributes_for_new_post.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/getting_started/form_with_errors.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/getting_started/index_action_with_edit_link.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/getting_started/new_post.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/getting_started/post_with_comments.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/getting_started/rails_welcome.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/getting_started/routing_error_no_controller.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/getting_started/routing_error_no_route_matches.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/getting_started/show_action_for_posts.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/getting_started/template_is_missing_posts_new.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/getting_started/undefined_method_post_path.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/getting_started/unknown_action_create_for_posts.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/getting_started/unknown_action_new_for_posts.png, skipping
+	unable to convert "\xF0" from ASCII-8BIT to UTF-8 for guides/assets/images/grey_bullet.gif, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/habtm.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/has_many.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/has_many_through.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/has_one.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/has_one_through.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/header_backdrop.png, skipping
+	unable to convert "\x80" from ASCII-8BIT to UTF-8 for guides/assets/images/header_tile.gif, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/i18n/demo_html_safe.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/i18n/demo_localized_pirate.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/i18n/demo_translated_en.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/i18n/demo_translated_pirate.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/i18n/demo_translation_missing.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/i18n/demo_untranslated.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/icons/callouts/1.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/icons/callouts/10.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/icons/callouts/11.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/icons/callouts/12.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/icons/callouts/13.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/icons/callouts/14.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/icons/callouts/15.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/icons/callouts/2.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/icons/callouts/3.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/icons/callouts/4.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/icons/callouts/5.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/icons/callouts/6.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/icons/callouts/7.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/icons/callouts/8.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/icons/callouts/9.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/icons/caution.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/icons/example.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/icons/home.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/icons/important.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/icons/next.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/icons/note.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/icons/prev.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/icons/tip.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/icons/up.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/icons/warning.png, skipping
+	unable to convert "\xFF" from ASCII-8BIT to UTF-8 for guides/assets/images/jaimeiniesta.jpg, skipping
+	unable to convert "\xF5" from ASCII-8BIT to UTF-8 for guides/assets/images/nav_arrow.gif, skipping
+	unable to convert "\xFF" from ASCII-8BIT to UTF-8 for guides/assets/images/oscardelben.jpg, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/polymorphic.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/radar.png, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/rails4_features.png, skipping
+	unable to convert "\xFF" from ASCII-8BIT to UTF-8 for guides/assets/images/rails_guides_kindle_cover.jpg, skipping
+	unable to convert "\xEC" from ASCII-8BIT to UTF-8 for guides/assets/images/rails_guides_logo.gif, skipping
+	unable to convert "\x8C" from ASCII-8BIT to UTF-8 for guides/assets/images/rails_logo_remix.gif, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/session_fixation.png, skipping
+	unable to convert "\x80" from ASCII-8BIT to UTF-8 for guides/assets/images/tab_grey.gif, skipping
+	unable to convert "\x80" from ASCII-8BIT to UTF-8 for guides/assets/images/tab_info.gif, skipping
+	unable to convert "\x80" from ASCII-8BIT to UTF-8 for guides/assets/images/tab_note.gif, skipping
+	unable to convert "\x80" from ASCII-8BIT to UTF-8 for guides/assets/images/tab_red.gif, skipping
+	unable to convert "\x80" from ASCII-8BIT to UTF-8 for guides/assets/images/tab_yellow.gif, skipping
+	unable to convert "\x89" from ASCII-8BIT to UTF-8 for guides/assets/images/tab_yellow.png, skipping
+	unable to convert "\xFF" from ASCII-8BIT to UTF-8 for guides/assets/images/vijaydev.jpg, skipping
+	Installing ri documentation for rails-4.0.1
+
+
+### Test 'rails' command
+	
+	limingth@gmail ~/myRoR$ rails
+	Usage:
+	  rails new APP_PATH [options]
+	
+	Options:
+	  -r, [--ruby=PATH]              # Path to the Ruby binary of your choice
+	                                 # Default: /Users/limingth/.rvm/rubies/ruby-2.0.0-p247/bin/ruby
+	  -m, [--template=TEMPLATE]      # Path to some application template (can be a filesystem path or URL)
+	      [--skip-gemfile]           # Don't create a Gemfile
+	  -B, [--skip-bundle]            # Don't run bundle install
+	  -G, [--skip-git]               # Skip .gitignore file
+	      [--skip-keeps]             # Skip source control .keep files
+	  -O, [--skip-active-record]     # Skip Active Record files
+	  -S, [--skip-sprockets]         # Skip Sprockets files
+	  -d, [--database=DATABASE]      # Preconfigure for selected database (options: mysql/oracle/postgresql/sqlite3/frontbase/ibm_db/sqlserver/jdbcmysql/jdbcsqlite3/jdbcpostgresql/jdbc)
+	                                 # Default: sqlite3
+	  -j, [--javascript=JAVASCRIPT]  # Preconfigure for selected JavaScript library
+	                                 # Default: jquery
+	  -J, [--skip-javascript]        # Skip JavaScript files
+	      [--dev]                    # Setup the application with Gemfile pointing to your Rails checkout
+	      [--edge]                   # Setup the application with Gemfile pointing to Rails repository
+	  -T, [--skip-test-unit]         # Skip Test::Unit files
+	      [--rc=RC]                  # Path to file containing extra configuration options for rails command
+	      [--no-rc]                  # Skip loading of extra configuration options from .railsrc file
+	
+	Runtime options:
+	  -f, [--force]    # Overwrite files that already exist
+	  -p, [--pretend]  # Run but do not make any changes
+	  -q, [--quiet]    # Suppress status output
+	  -s, [--skip]     # Skip files that already exist
+	
+	Rails options:
+	  -h, [--help]     # Show this help message and quit
+	  -v, [--version]  # Show Rails version number and quit
+	
+	Description:
+	    The 'rails new' command creates a new Rails application with a default
+	    directory structure and configuration at the path you specify.
+	
+	    You can specify extra command-line arguments to be used every time
+	    'rails new' runs in the .railsrc configuration file in your home directory.
+	
+	    Note that the arguments specified in the .railsrc file don't affect the
+	    defaults values shown above in this help message.
+	
+	Example:
+	    rails new ~/Code/Ruby/weblog
+	
+	    This generates a skeletal Rails installation in ~/Code/Ruby/weblog.
+	    See the README in the newly created application to get going.
+
