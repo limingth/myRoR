@@ -681,3 +681,45 @@ limingth@gmail ~$
 	Gemfile.lock	app		config.ru	log		tmp
 	README.rdoc	bin		db		public		vendor
 	limingth@gmail ~/Code/Ruby/weblog$ 
+	
+### Install heroku
+
+	limingth@gmail ~/Code/Ruby/weblog$ sudo gem install heroku
+	Password:
+	Fetching: excon-0.25.3.gem (100%)
+	Successfully installed excon-0.25.3
+	Fetching: heroku-api-0.3.15.gem (100%)
+	Successfully installed heroku-api-0.3.15
+	Fetching: netrc-0.7.7.gem (100%)
+	Successfully installed netrc-0.7.7
+	Fetching: rest-client-1.6.7.gem (100%)
+	Successfully installed rest-client-1.6.7
+	Fetching: addressable-2.3.5.gem (100%)
+	Successfully installed addressable-2.3.5
+	Fetching: launchy-2.3.0.gem (100%)
+	Successfully installed launchy-2.3.0
+	Fetching: rubyzip-1.1.0.gem (100%)
+	Successfully installed rubyzip-1.1.0
+	Fetching: heroku-3.0.1.gem (100%)
+	 !    The `heroku` gem has been deprecated and replaced with the Heroku Toolbelt.
+	 !    Download and install from: https://toolbelt.heroku.com
+	 !    For API access, see: https://github.com/heroku/heroku.rb
+	Successfully installed heroku-3.0.1
+	Parsing documentation for addressable-2.3.5
+	Installing ri documentation for addressable-2.3.5
+	Parsing documentation for excon-0.25.3
+	Installing ri documentation for excon-0.25.3
+	Parsing documentation for heroku-3.0.1
+	Installing ri documentation for heroku-3.0.1
+	Parsing documentation for heroku-api-0.3.15
+	Installing ri documentation for heroku-api-0.3.15
+	Parsing documentation for launchy-2.3.0
+	Installing ri documentation for launchy-2.3.0
+	Parsing documentation for netrc-0.7.7
+	Installing ri documentation for netrc-0.7.7
+	Parsing documentation for rest-client-1.6.7
+	Installing ri documentation for rest-client-1.6.7
+	Parsing documentation for rubyzip-1.1.0
+	Installing ri documentation for rubyzip-1.1.0
+	8 gems installed
+	limingth@gmail ~/Code/Ruby/weblog$ 
