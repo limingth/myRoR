@@ -1,0 +1,34 @@
+#! /bin/ruby
+
+# my project of tip calculator version 2.0
+# Author: limingth@gmail.com
+# Date:   11/14/2013
+
+# the base price of the meal
+print "Enter the cost of your meal before tax: "
+# meal = 20.00
+input = gets.chomp
+meal = Float(input)
+
+# the tax rate for the meal
+print "Enter the rate of your local tax: "
+# tax = 0.12
+input = gets.chomp
+tax = Float(input) / 100
+
+# the tip rate for the meal
+print "Enter the rate you'd like to tip: "
+# tip = 0.20
+input = gets.chomp
+tip = Float(input) / 100
+
+tax_value = meal * tax
+meal_with_tax = meal + tax_value
+tip_value = meal_with_tax * tip
+total_cost = meal_with_tax + tip_value
+
+print "The pre-tax cost of your meal was $#{meal}\n"
+print "At #{tax*100}%, tax for this meal is $#{tax_value}\n"
+print "For a #{tip*100}% tip, you should leave $#{tip_value}\n"
+print "The grand total for this meal is then $#{total_cost}\n"
+
