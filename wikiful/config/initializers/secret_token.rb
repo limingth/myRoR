@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Wikiful::Application.config.secret_key_base = '209e75f1481c3cf78350adeaf0b90ee523b1b3cae5699a02ed84014bf956bd91bfbc2119bb0d82e7749ff8036c4d40c6a3dba813e0c73a46729cfefde0387e60'
+Wikiful::Application.config.secret_key_base = '1659a5a8102a3d89f85b332e74b4f3929e7f40343019186c68430d285b337c233401b11403eab18d56aa0e3465abe3427986f3691f79867a754d5df5d13ca5bb'
