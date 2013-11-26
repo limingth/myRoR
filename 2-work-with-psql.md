@@ -155,7 +155,7 @@ http://www.postgresqltutorial.com/?wpdmact=process&did=MS5ob3RsaW5r
 
 * See it works! 
 
-__Thanks [Ben White](https://plus.google.com/u/0/117357428990916642118) :-)__
+***Thanks [Ben White](https://plus.google.com/u/0/117357428990916642118) :-)***
 
 ## The ActiveRecord ORM and Models in Rails
 
@@ -737,4 +737,4 @@ limingth@gmail ~/Github/myRoR/wikiful$ vi app/models/article.rb
 	   cec5e80..679b9d3  master -> master
 	limingth@gmail ~/Github/myRoR/wikiful$ 
 
-**Thanks [Rick Thomas](https://plus.google.com/u/0/109332920695988460104). I am so grateful for all the help you gave to me :))**	
+***Thanks [Rick Thomas](https://plus.google.com/u/0/109332920695988460104). I am so grateful for all the help you gave to me :))***
