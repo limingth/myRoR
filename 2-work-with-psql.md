@@ -154,7 +154,8 @@ http://www.postgresqltutorial.com/?wpdmact=process&did=MS5ob3RsaW5r
 		           9 |        2 | Margaret    | Moore        | margaret.moore@sakilacustomer.org        |         13 | 
 
 * See it works! 
-**Thanks [Ben White](https://plus.google.com/u/0/117357428990916642118) :-) **
+
+__Thanks [Ben White](https://plus.google.com/u/0/117357428990916642118) :-)__
 
 ## The ActiveRecord ORM and Models in Rails
 
