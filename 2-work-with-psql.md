@@ -470,9 +470,8 @@ limingth@gmail ~/Github/myRoR/wikiful$ vi app/models/article.rb
 	  3 has_many :article_categories
 	  4 has_many :categories, through: :article_categories
 	  5 validates :title, presence: true
-	  6 validates :content, presence: true
-	  7 validates :categories, presence: true
-	  8 end
+	  6 validates :content, presence: true	  
+	  7 end
 
 ### 
 	limingth@gmail ~/Github/myRoR/wikiful$ rails g model ArticalCategory
@@ -568,4 +567,156 @@ limingth@gmail ~/Github/myRoR/wikiful$ vi app/models/article.rb
 	 => nil 
 	2.0.0-p247 :004 > 
 
+limingth@gmail ~/Github/myRoR/wikiful$ rails console
+	Loading development environment (Rails 4.0.1)
+	2.0.0-p247 :001 > b = Category.new
+	 => #<Category id: nil, title: nil, content: nil, created_at: nil, updated_at: nil> 
+	2.0.0-p247 :002 > b.title = "bbb"
+	 => "bbb" 
+	2.0.0-p247 :003 > b.content = "bccc"
+	 => "bccc" 
+	2.0.0-p247 :004 > b.save
+	   (8.2ms)  BEGIN
+	  SQL (14.8ms)  INSERT INTO "categories" ("content", "created_at", "title", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["content", "bccc"], ["created_at", Tue, 26 Nov 2013 19:24:31 UTC +00:00], ["title", "bbb"], ["updated_at", Tue, 26 Nov 2013 19:24:31 UTC +00:00]]
+	   (2.5ms)  COMMIT
+	 => true 
+	2.0.0-p247 :005 > a = Article.new(title:"aaa", content:"this is b content")
+	 => #<Article id: nil, title: "aaa", content: "this is b content", created_at: nil, updated_at: nil> 
+	2.0.0-p247 :006 > a.save
+	   (2.0ms)  BEGIN
+	   (0.6ms)  ROLLBACK
+	 => false 
+	2.0.0-p247 :007 > a.categories << b
+	 => #<ActiveRecord::Associations::CollectionProxy [#<Category id: 1, title: "bbb", content: "bccc", created_at: "2013-11-26 19:24:31", updated_at: "2013-11-26 19:24:31">]> 
+	2.0.0-p247 :008 > a.save
+	   (9.1ms)  BEGIN
+	  SQL (18.3ms)  INSERT INTO "articles" ("content", "created_at", "title", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["content", "this is b content"], ["created_at", Tue, 26 Nov 2013 19:26:25 UTC +00:00], ["title", "aaa"], ["updated_at", Tue, 26 Nov 2013 19:26:25 UTC +00:00]]
+	  SQL (4.3ms)  INSERT INTO "article_categories" ("article_id", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["article_id", 1], ["category_id", 1], ["created_at", Tue, 26 Nov 2013 19:26:25 UTC +00:00], ["updated_at", Tue, 26 Nov 2013 19:26:25 UTC +00:00]]
+	   (3.0ms)  COMMIT
+	 => true 
+	2.0.0-p247 :009 > 
+
+	2.0.0-p247 :009 > Article.count
+	   (2.3ms)  SELECT COUNT(*) FROM "articles"
+	 => 1 
+	2.0.0-p247 :010 > Article.first
+	  Article Load (3.1ms)  SELECT "articles".* FROM "articles" ORDER BY "articles"."id" ASC LIMIT 1
+	 => #<Article id: 1, title: "aaa", content: "this is b content", created_at: "2013-11-26 19:26:25", updated_at: "2013-11-26 19:26:25"> 
+	2.0.0-p247 :011 > Article.last
+	  Article Load (1.5ms)  SELECT "articles".* FROM "articles" ORDER BY "articles"."id" DESC LIMIT 1
+	 => #<Article id: 1, title: "aaa", content: "this is b content", created_at: "2013-11-26 19:26:25", updated_at: "2013-11-26 19:26:25"> 
+	2.0.0-p247 :012 > 
+
+
 ## Seed Your Data
+
+### add Faker to your Gemfile
+	limingth@gmail ~/Github/myRoR/wikiful$ vi Gemfile
+	 42 # Use Capistrano for deployment
+	 43 # gem 'capistrano', group: :development
+	 44 
+	 45 group :development, :test do
+	 46 gem 'faker'
+	 47 end
+	 48 
+	 49 # Use debugger
+	 50 # gem 'debugger', group: [:development, :test]
+	 51 
+
+### update your Gems	
+	limingth@gmail ~/Github/myRoR/wikiful$ bundle install
+	Fetching gem metadata from https://rubygems.org/...........
+	Fetching gem metadata from https://rubygems.org/..
+	Resolving dependencies...
+	Using rake (10.1.0) 
+	Using i18n (0.6.5) 
+	Using minitest (4.7.5) 
+	Using multi_json (1.8.2) 
+	Using atomic (1.1.14) 
+	Using thread_safe (0.1.3) 
+	Using tzinfo (0.3.38) 
+	Using activesupport (4.0.1) 
+	Using builder (3.1.4) 
+	Using erubis (2.7.0) 
+	Using rack (1.5.2) 
+	Using rack-test (0.6.2) 
+	Using actionpack (4.0.1) 
+	Using mime-types (1.25) 
+	Using polyglot (0.3.3) 
+	Using treetop (1.4.15) 
+	Using mail (2.5.4) 
+	Using actionmailer (4.0.1) 
+	Using activemodel (4.0.1) 
+	Using activerecord-deprecated_finders (1.0.3) 
+	Using arel (4.0.1) 
+	Using activerecord (4.0.1) 
+	Using bundler (1.3.5) 
+	Using coffee-script-source (1.6.3) 
+	Using execjs (2.0.2) 
+	Using coffee-script (2.2.0) 
+	Using thor (0.18.1) 
+	Using railties (4.0.1) 
+	Using coffee-rails (4.0.1) 
+	Installing faker (1.2.0) 
+	Using hike (1.2.3) 
+	Using jbuilder (1.5.2) 
+	Using jquery-rails (3.0.4) 
+	Using json (1.8.1) 
+	Using pg (0.17.0) 
+	Using tilt (1.4.1) 
+	Using sprockets (2.10.0) 
+	Using sprockets-rails (2.0.1) 
+	Using rails (4.0.1) 
+	Using rdoc (3.12.2) 
+	Using sass (3.2.12) 
+	Using sass-rails (4.0.1) 
+	Using sdoc (0.3.20) 
+	Using turbolinks (1.3.1) 
+	Using uglifier (2.3.1) 
+	Your bundle is complete!
+	Use `bundle show [gemname]` to see where a bundled gem is installed.
+
+### write your own code for seeds.rb to generate data
+	limingth@gmail ~/Github/myRoR/wikiful$ vi db/seeds.rb 
+	  1 # This file should contain all the record creation needed to seed the database with it    s default values.
+	  2 # The data can then be loaded with the rake db:seed (or created alongside the db with     db:setup).
+	  3 #
+	  4 # Examples:
+	  5 #
+	  6 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+	  7 #   Mayor.create(name: 'Emanuel', city: cities.first)
+	  8 
+	  9 
+	 10 categories = Category.create([
+	 11   { name: 'History'}, {name: 'Biology'}, {name: 'Literature'},
+	 12   { name: 'Mathematics'}, { name: 'Music Theory'}, { name: 'Computer Science'},
+	 13   { name: 'Sociology'}, {name: 'Chemistry'}
+	 14 ])
+	 15 
+	 16 # create 50 articles, with random titles, 250 words of content, and
+	 17 # randomly assign one of the categories above to each article
+	 18 for i in 0..49
+	 19   title = Faker::Lorem.sentence(rand(2..10)).chomp('.')
+	 20   content = Faker::Lorem.paragraph(word_count=250)
+	 21 
+	 22   # randomly assign one of the categories we just created
+	 23   category = Category.first(offset: rand(Category.count))
+	 24   a = Article.create(title: title, content: content, categories: [category,])
+	 25 end
+
+### seed your data                      
+	limingth@gmail ~/Github/myRoR/wikiful$ rake db:seed
+
+### open the rails console 
+	limingth@gmail ~/Github/myRoR/wikiful$ rails console
+	Loading development environment (Rails 4.0.1)
+	2.0.0-p247 :001 > Article.count
+	   (1.6ms)  SELECT COUNT(*) FROM "articles"
+	 => 50 
+	2.0.0-p247 :002 > Article.first
+	  Article Load (26.6ms)  SELECT "articles".* FROM "articles" ORDER BY "articles"."id" ASC LIMIT 1
+	 => #<Article id: 1, title: "Aut veritatis animi voluptas doloribus enim archite...", content: "Nam commodi magni aut veritatis. Fugit repudiandae ...", created_at: "2013-11-26 19:39:21", updated_at: "2013-11-26 19:39:21"> 
+	2.0.0-p247 :003 > quit
+	limingth@gmail ~/Github/myRoR/wikiful$ 
+
+### make sure to add and commit the changes 
