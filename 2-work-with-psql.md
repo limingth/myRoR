@@ -498,7 +498,7 @@ limingth@gmail ~/Github/myRoR/wikiful$ vi app/models/article.rb
 	  9 end
 
 ### rake db:migrate
-	limingth@gmail ~/Github/myRoR/wikiful$ 
+	limingth@gmail ~/Github/myRoR/wikiful$ rake db:migrate
 	==  CreateCategories: migrating ===============================================
 	-- create_table(:categories)
 	   -> 0.0212s
@@ -556,5 +556,16 @@ limingth@gmail ~/Github/myRoR/wikiful$ vi app/models/article.rb
 	limingth@gmail ~/Github/myRoR/wikiful$ 
 
 ### rails console
+	limingth@gmail ~/Github/myRoR/wikiful$ rails c
+	Loading development environment (Rails 4.0.1)
+	2.0.0-p247 :001 > Article
+	 => Article(no database connection) 
+	2.0.0-p247 :002 > Article.count
+	   (0.9ms)  SELECT COUNT(*) FROM "articles"
+	 => 0 
+	2.0.0-p247 :003 > Article.first
+	  Article Load (2.3ms)  SELECT "articles".* FROM "articles" ORDER BY "articles"."id" ASC LIMIT 1
+	 => nil 
+	2.0.0-p247 :004 > 
 
 ## Seed Your Data
