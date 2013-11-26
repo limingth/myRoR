@@ -362,3 +362,96 @@ limingth@gmail ~/Github/myRoR/wikiful$ vi app/models/article.rb
 	limingth@gmail ~/Github/myRoR/wikiful$ 
 
 ### git commit
+	limingth@gmail ~/Github/myRoR/wikiful$ git add .
+	limingth@gmail ~/Github/myRoR/wikiful$ git status
+	# On branch master
+	# Changes to be committed:
+	#   (use "git reset HEAD <file>..." to unstage)
+	#
+	#	new file:   app/models/article_category.rb
+	#	new file:   db/migrate/20131126014146_create_article_categories.rb
+	#	modified:   db/schema.rb
+	#	new file:   test/fixtures/article_categories.yml
+	#	new file:   test/models/article_category_test.rb
+	#
+	# Changes not staged for commit:
+	#   (use "git add <file>..." to update what will be committed)
+	#   (use "git checkout -- <file>..." to discard changes in working directory)
+	#
+	#	modified:   ../2-work-with-psql.md
+	#
+	limingth@gmail ~/Github/myRoR/wikiful$ git commit -a -m "just added a new model"
+	[master 74e8b1e] just added a new model
+	 6 files changed, 117 insertions(+), 2 deletions(-)
+	 create mode 100644 wikiful/app/models/article_category.rb
+	 create mode 100644 wikiful/db/migrate/20131126014146_create_article_categories.rb
+	 create mode 100644 wikiful/test/fixtures/article_categories.yml
+	 create mode 100644 wikiful/test/models/article_category_test.rb
+	limingth@gmail ~/Github/myRoR/wikiful$ git push
+	Counting objects: 27, done.
+	Delta compression using up to 2 threads.
+	Compressing objects: 100% (16/16), done.
+	Writing objects: 100% (16/16), 2.55 KiB | 0 bytes/s, done.
+	Total 16 (delta 6), reused 0 (delta 0)
+	To git@github.com:limingth/myRoR.git
+	   1856fe8..74e8b1e  master -> master
+	limingth@gmail ~/Github/myRoR/wikiful$ 
+
+
+### create Category model
+	limingth@gmail ~/Github/myRoR/wikiful$ rails generate model Category title:string content:text
+	      invoke  active_record
+	      create    db/migrate/20131126015934_create_categories.rb
+	      create    app/models/category.rb
+	      invoke    test_unit
+	      create      test/models/category_test.rb
+	      create      test/fixtures/categories.yml
+	limingth@gmail ~/Github/myRoR/wikiful$ 
+
+### modify Category files
+	limingth@gmail ~/Github/myRoR/wikiful$ vi app/models/category.rb 
+	  1 class Category < ActiveRecord::Base
+	  2 belongs_to :user
+	  3 has_many :article_categories
+	  4 has_many :categories, through: :article_categories
+	  5 validates :title, presence: true
+	  6 validates :content, presence: true
+	  7 validates :categories, presence: true
+	  8 end
+
+### 
+	limingth@gmail ~/Github/myRoR/wikiful$ rails g model ArticalCategory
+	      invoke  active_record
+	      create    db/migrate/20131126020311_create_artical_categories.rb
+	      create    app/models/artical_category.rb
+	      invoke    test_unit
+	      create      test/models/artical_category_test.rb
+	      create      test/fixtures/artical_categories.yml
+	limingth@gmail ~/Github/myRoR/wikiful$ 
+
+### 
+	limingth@gmail ~/Github/myRoR/wikiful$ vi db/migrate/20131126020311_create_artical_categories.rb 
+	limingth@gmail ~/Github/myRoR/wikiful$ 
+	  1 class CreateArticalCategories < ActiveRecord::Migration
+	  2   def change
+	  3     create_table :artical_categories do |t|
+	  4         t.belongs_to :article
+	  5         t.belongs_to :category
+	  6       t.timestamps
+	  7     end
+	  8   end
+	  9 end
+
+### rake db:migrate
+	limingth@gmail ~/Github/myRoR/wikiful$ 
+	==  CreateCategories: migrating ===============================================
+	-- create_table(:categories)
+	   -> 0.0212s
+	==  CreateCategories: migrated (0.0214s) ======================================
+
+	==  CreateArticalCategories: migrating ========================================
+	-- create_table(:artical_categories)
+	   -> 0.0101s
+	==  CreateArticalCategories: migrated (0.0118s) ===============================
+
+	limingth@gmail ~/Github/myRoR/wikiful$   
