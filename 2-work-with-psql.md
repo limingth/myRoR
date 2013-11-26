@@ -65,17 +65,30 @@ http://www.postgresqltutorial.com/?wpdmact=process&did=MS5ob3RsaW5r
 ### createdb newdb
 	limingth@gmail ~/Github/myRoR$ createdb -T template0 newdb
 
+* where does postgresql store the database
+	- /Users/limingth/Library/Application Support/Postgres93/var/base
+
+	The actual database files will be under /usr/local/var/postgres after you create the database. So, just create a database and then see what's new or changed under /usr/local/var/postgres. There isn't a single "dbname.db" file or anything like that, each database is a collection of files with names that are only meaningful to the database server.
+
+<http://stackoverflow.com/questions/5052907/location-of-postgresql-database-on-os-x>
+
+<http://stackoverflow.com/questions/1137060/where-does-postgresql-store-the-database>
+
+
 ### pg_restore 
-	limingth@gmail ~/Github/myRoR$ pg_restore -U postgres -d dvdrental dvdrental.tar
+	limingth@gmail ~/Github/myRoR$ pg_restore -U postgres -d dvdrental ./dvdrental.tar
 	pg_restore: [archiver (db)] connection to database "dvdrental" failed: FATAL:  role "postgres" does not exist
 	limingth@gmail ~/Github/myRoR$ createuser -s postgres
+
+	limingth@gmail ~/Github/myRoR$ sudo pg_restore -U postgres -d dvdrental ./dvdrental.tar 
+	pg_restore: [archiver (db)] connection to database "dvdrental" failed: FATAL:  database "dvdrental" does not exist
 
 * the problem here is due to createdb newdb, should be dvdrental
 
 ### createdb dvdrental
 	limingth@gmail ~/Github/myRoR$ createdb -T template0 dvdrental
 	limingth@gmail ~/Github/myRoR$ pg_restore -U postgres -d dvdrental ./dvdrental.tar
-
+	(if pg_restore execute successfully, there should be NO message output)
 	limingth@gmail ~/Github/myRoR$ 
 
 ### let's verify the restoration
@@ -84,21 +97,62 @@ http://www.postgresqltutorial.com/?wpdmact=process&did=MS5ob3RsaW5r
 		Is the server running locally and accepting
 		connections on Unix domain socket "/var/pgsql_socket/.s.PGSQL.5432"?
 	limingth@gmail ~$ export PATH="/Applications/Postgres93.app/Contents/MacOS/bin:$PATH"
-	limingth@gmail ~$ psql
+	limingth@gmail ~$ psql 
 	psql (9.3.1)
 	Type "help" for help.
 
 	limingth=# \list
-	                                  List of databases
-	   Name    |  Owner   | Encoding |   Collate   |    Ctype    |   Access privileges   
-	-----------+----------+----------+-------------+-------------+-----------------------
-	 dvdrental | limingth | UTF8     | zh_CN.UTF-8 | zh_CN.UTF-8 | 
-	 newdb     | limingth | UTF8     | zh_CN.UTF-8 | zh_CN.UTF-8 | 
-	 template0 | limingth | UTF8     | zh_CN.UTF-8 | zh_CN.UTF-8 | =c/limingth          +
-	           |          |          |             |             | limingth=CTc/limingth
-	 template1 | limingth | UTF8     | zh_CN.UTF-8 | zh_CN.UTF-8 | =c/limingth          +
-	           |          |          |             |             | limingth=CTc/limingth
-	(4 rows)
+	                                       List of databases
+	        Name         |  Owner   | Encoding |   Collate   |    Ctype    |   Access privileges   
+	---------------------+----------+----------+-------------+-------------+-----------------------
+	 dvdrental           | limingth | UTF8     | zh_CN.UTF-8 | zh_CN.UTF-8 | 
+	 limingth            | limingth | UTF8     | zh_CN.UTF-8 | zh_CN.UTF-8 | 
+	 newdb               | limingth | UTF8     | zh_CN.UTF-8 | zh_CN.UTF-8 | 
+	 postgres            | limingth | UTF8     | zh_CN.UTF-8 | zh_CN.UTF-8 | 
+	 template0           | limingth | UTF8     | zh_CN.UTF-8 | zh_CN.UTF-8 | =c/limingth          +
+	                     |          |          |             |             | limingth=CTc/limingth
+	 template1           | limingth | UTF8     | zh_CN.UTF-8 | zh_CN.UTF-8 | =c/limingth          +
+	                     |          |          |             |             | limingth=CTc/limingth
+	 wikiful_development | wikiful  | UTF8     | zh_CN.UTF-8 | zh_CN.UTF-8 | 
+	 wikiful_test        | wikiful  | UTF8     | zh_CN.UTF-8 | zh_CN.UTF-8 | 
+	(8 rows)
+
+	limingth=# select version();
+	                                                                                 version                                                                                  
+	--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	 PostgreSQL 9.3.1 on x86_64-apple-darwin12.5.0, compiled by i686-apple-darwin11-llvm-gcc-4.2 (GCC) 4.2.1 (Based on Apple Inc. build 5658) (LLVM build 2336.11.00), 64-bit
+	(1 row)
+
+	limingth=# select * from dvdrental;
+	ERROR:  relation "dvdrental" does not exist
+	LINE 1: select * from dvdrental;
+	                      ^
+	limingth=# 
+	limingth=# \q
+	limingth@gmail ~$ 
+
+* the reason here is we didn't use -d dbname argument to psql
+
+	limingth@gmail ~$ psql -d dvdrental
+	psql (9.3.1)
+	Type "help" for help.
+
+* notice here the prompt is changed
+
+	dvdrental=# select * from customer;
+	 customer_id | store_id | first_name  |  last_name   |                  email                   | address_id | activebool | create_date |       last_update       | active 
+	-------------+----------+-------------+--------------+------------------------------------------+------------+------------+-------------+-------------------------+--------
+	         524 |        1 | Jared       | Ely          | jared.ely@sakilacustomer.org             |        530 | t          | 2006-02-14  | 2013-05-26 14:49:45.738 |      1
+	           1 |        1 | Mary        | Smith        | mary.smith@sakilacustomer.org            |          5 | t          | 2006-02-14  | 2013-05-26 14:49:45.738 |      1
+	           2 |        1 | Patricia    | Johnson      | patricia.johnson@sakilacustomer.org      |          6 | t          | 2006-02-14  | 2013-05-26 14:49:45.738 |      1
+	           3 |        1 | Linda       | Williams     | linda.williams@sakilacustomer.org        |          7 | t          | 2006-02-14  | 2013-05-26 14:49:45.738 |      1
+	           4 |        2 | Barbara     | Jones        | barbara.jones@sakilacustomer.org         |          8 | t          | 2006-02-14  | 2013-05-26 14:49:45.738 |      1
+	           5 |        1 | Elizabeth   | Brown        | elizabeth.brown@sakilacustomer.org       |          9 | t          | 2006-02-14  | 2013-05-26 14:49:45.738 |      1
+	           6 |        2 | Jennifer    | Davis        | jennifer.davis@sakilacustomer.org        |         10 | t          | 2006-02-14  | 2013-05-26 14:49:45.738 |      1
+	           7 |        1 | Maria       | Miller       | maria.miller@sakilacustomer.org          |         11 | t          | 2006-02-14  | 2013-05-26 14:49:45.738 |      1
+	           8 |        2 | Susan       | Wilson       | susan.wilson@sakilacustomer.org          |         12 | t          | 2006-02-14  | 2013-05-26 14:49:45.738 |      1
+	           9 |        2 | Margaret    | Moore        | margaret.moore@sakilacustomer.org        |         13 | 
+
 
 ## The ActiveRecord ORM and Models in Rails
 
@@ -455,3 +509,51 @@ limingth@gmail ~/Github/myRoR/wikiful$ vi app/models/article.rb
 	==  CreateArticalCategories: migrated (0.0118s) ===============================
 
 	limingth@gmail ~/Github/myRoR/wikiful$   
+
+### git commit
+	limingth@gmail ~/Github/myRoR/wikiful$ git status
+	# On branch master
+	# Changes not staged for commit:
+	#   (use "git add <file>..." to update what will be committed)
+	#   (use "git checkout -- <file>..." to discard changes in working directory)
+	#
+	#	modified:   ../2-work-with-psql.md
+	#	modified:   db/schema.rb
+	#
+	# Untracked files:
+	#   (use "git add <file>..." to include in what will be committed)
+	#
+	#	app/models/artical_category.rb
+	#	app/models/category.rb
+	#	db/migrate/20131126015934_create_categories.rb
+	#	db/migrate/20131126020311_create_artical_categories.rb
+	#	test/fixtures/artical_categories.yml
+	#	test/fixtures/categories.yml
+	#	test/models/artical_category_test.rb
+	#	test/models/category_test.rb
+	no changes added to commit (use "git add" and/or "git commit -a")
+	limingth@gmail ~/Github/myRoR/wikiful$ git add .
+	limingth@gmail ~/Github/myRoR/wikiful$ git commit -a -m "added Category model"
+	[master 687a718] added Category model
+	 10 files changed, 171 insertions(+), 1 deletion(-)
+	 create mode 100644 wikiful/app/models/artical_category.rb
+	 create mode 100644 wikiful/app/models/category.rb
+	 create mode 100644 wikiful/db/migrate/20131126015934_create_categories.rb
+	 create mode 100644 wikiful/db/migrate/20131126020311_create_artical_categories.rb
+	 create mode 100644 wikiful/test/fixtures/artical_categories.yml
+	 create mode 100644 wikiful/test/fixtures/categories.yml
+	 create mode 100644 wikiful/test/models/artical_category_test.rb
+	 create mode 100644 wikiful/test/models/category_test.rb
+	limingth@gmail ~/Github/myRoR/wikiful$ git push
+	Counting objects: 29, done.
+	Delta compression using up to 2 threads.
+	Compressing objects: 100% (17/17), done.
+	Writing objects: 100% (18/18), 2.51 KiB | 0 bytes/s, done.
+	Total 18 (delta 7), reused 0 (delta 0)
+	To git@github.com:limingth/myRoR.git
+	   74e8b1e..687a718  master -> master
+	limingth@gmail ~/Github/myRoR/wikiful$ 
+
+### rails console
+
+## Seed Your Data
