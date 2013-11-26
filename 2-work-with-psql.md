@@ -567,7 +567,8 @@ limingth@gmail ~/Github/myRoR/wikiful$ vi app/models/article.rb
 	 => nil 
 	2.0.0-p247 :004 > 
 
-limingth@gmail ~/Github/myRoR/wikiful$ rails console
+### redo it
+	limingth@gmail ~/Github/myRoR/wikiful$ rails console
 	Loading development environment (Rails 4.0.1)
 	2.0.0-p247 :001 > b = Category.new
 	 => #<Category id: nil, title: nil, content: nil, created_at: nil, updated_at: nil> 
