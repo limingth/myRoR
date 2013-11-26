@@ -127,15 +127,15 @@ http://www.postgresqltutorial.com/?wpdmact=process&did=MS5ob3RsaW5r
 	ERROR:  relation "dvdrental" does not exist
 	LINE 1: select * from dvdrental;
 	                      ^
-	limingth=# 
 	limingth=# \q
 	limingth@gmail ~$ 
 
-* the reason here is we didn't use -d dbname argument to psql
+* the reason here is we didn't use "-d dbname" argument to psql command
 
 		limingth@gmail ~$ psql -d dvdrental
 		psql (9.3.1)
 		Type "help" for help.
+		dvdrental=# 
 
 * notice here the prompt is changed
 
@@ -153,6 +153,7 @@ http://www.postgresqltutorial.com/?wpdmact=process&did=MS5ob3RsaW5r
 		           8 |        2 | Susan       | Wilson       | susan.wilson@sakilacustomer.org          |         12 | t          | 2006-02-14  | 2013-05-26 14:49:45.738 |      1
 		           9 |        2 | Margaret    | Moore        | margaret.moore@sakilacustomer.org        |         13 | 
 
+* See it works! Thanks Ben White :-) 
 
 ## The ActiveRecord ORM and Models in Rails
 
