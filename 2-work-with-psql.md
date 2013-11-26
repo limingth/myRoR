@@ -720,3 +720,16 @@ limingth@gmail ~/Github/myRoR/wikiful$ rails console
 	limingth@gmail ~/Github/myRoR/wikiful$ 
 
 ### make sure to add and commit the changes 
+	limingth@gmail ~/Github/myRoR/wikiful$ git add .
+	limingth@gmail ~/Github/myRoR/wikiful$ git commit -a -m "seed the data"
+	[master 679b9d3] seed the data
+	 9 files changed, 185 insertions(+), 23 deletions(-)
+	limingth@gmail ~/Github/myRoR/wikiful$ git push
+	Counting objects: 27, done.
+	Delta compression using up to 2 threads.
+	Compressing objects: 100% (14/14), done.
+	Writing objects: 100% (14/14), 2.95 KiB | 0 bytes/s, done.
+	Total 14 (delta 12), reused 0 (delta 0)
+	To git@github.com:limingth/myRoR.git
+	   cec5e80..679b9d3  master -> master
+	limingth@gmail ~/Github/myRoR/wikiful$ 
