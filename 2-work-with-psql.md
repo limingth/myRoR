@@ -284,4 +284,81 @@ limingth@gmail ~/Github/myRoR/wikiful$ vi app/models/article.rb
 
 	limingth@gmail ~/Github/myRoR/wikiful$ 
   
-###           
+### git commit
+	limingth@gmail ~/Github/myRoR/wikiful$ git add ..
+	limingth@gmail ~/Github/myRoR/wikiful$ git status
+	# On branch master
+	# Changes to be committed:
+	#   (use "git reset HEAD <file>..." to unstage)
+	#
+	#	new file:   ../2-work-with-psql.md
+	#	new file:   ../dvdrental.tar
+	#	new file:   ../dvdrental.zip
+	#	new file:   app/models/article.rb
+	#	new file:   db/migrate/20131126012459_create_articles.rb
+	#	new file:   db/schema.rb
+	#	new file:   test/fixtures/articles.yml
+	#	new file:   test/models/article_test.rb
+	#
+	limingth@gmail ~/Github/myRoR/wikiful$ git commit -a -m "added Article model"
+	[master 1856fe8] added Article model
+	 8 files changed, 347 insertions(+)
+	 create mode 100644 2-work-with-psql.md
+	 create mode 100644 dvdrental.tar
+	 create mode 100644 dvdrental.zip
+	 create mode 100644 wikiful/app/models/article.rb
+	 create mode 100644 wikiful/db/migrate/20131126012459_create_articles.rb
+	 create mode 100644 wikiful/db/schema.rb
+	 create mode 100644 wikiful/test/fixtures/articles.yml
+	 create mode 100644 wikiful/test/models/article_test.rb
+	limingth@gmail ~/Github/myRoR/wikiful$ git push
+	Counting objects: 25, done.
+	Delta compression using up to 2 threads.
+	Compressing objects: 100% (18/18), done.
+	Writing objects: 100% (18/18), 1.12 MiB | 0 bytes/s, done.
+	Total 18 (delta 3), reused 0 (delta 0)
+	To git@github.com:limingth/myRoR.git
+	   a24f186..1856fe8  master -> master
+	limingth@gmail ~/Github/myRoR/wikiful$           
+
+### create ArticleCategory
+	limingth@gmail ~/Github/myRoR/wikiful$ rails g model ArticleCategory
+	      invoke  active_record
+	      create    db/migrate/20131126014146_create_article_categories.rb
+	      create    app/models/article_category.rb
+	      invoke    test_unit
+	      create      test/models/article_category_test.rb
+	      create      test/fixtures/article_categories.yml
+	limingth@gmail ~/Github/myRoR/wikiful$ 
+
+### modify migration file
+	limingth@gmail ~/Github/myRoR/wikiful$ vi db/migrate/20131126014146_create_article_categories.rb 
+
+	  1 class CreateArticleCategories < ActiveRecord::Migration
+	  2   def change
+	  3     create_table :article_categories do |t|
+	  4         t.belongs_to :article
+	  5         t.belongs_to :category
+	  6       t.timestamps
+	  7     end
+	  8   end
+	  9 end
+
+### modify article category
+	limingth@gmail ~/Github/myRoR/wikiful$ vi app/models/article_category.rb 
+
+	  1 class ArticleCategory < ActiveRecord::Base
+	  2   belongs_to :article
+	  3   belongs_to :category
+	  4 end
+
+### rake db:migrate
+	limingth@gmail ~/Github/myRoR/wikiful$ rake db:migrate
+	==  CreateArticleCategories: migrating ========================================
+	-- create_table(:article_categories)
+	   -> 0.0205s
+	==  CreateArticleCategories: migrated (0.0207s) ===============================
+
+	limingth@gmail ~/Github/myRoR/wikiful$ 
+
+### git commit
