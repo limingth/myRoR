@@ -153,7 +153,7 @@ http://www.postgresqltutorial.com/?wpdmact=process&did=MS5ob3RsaW5r
 		           8 |        2 | Susan       | Wilson       | susan.wilson@sakilacustomer.org          |         12 | t          | 2006-02-14  | 2013-05-26 14:49:45.738 |      1
 		           9 |        2 | Margaret    | Moore        | margaret.moore@sakilacustomer.org        |         13 | 
 
-* See it works! Thanks Ben White :-) 
+* See it works! Thanks [Ben White](https://plus.google.com/u/0/117357428990916642118) :-) 
 
 ## The ActiveRecord ORM and Models in Rails
 
@@ -734,3 +734,5 @@ limingth@gmail ~/Github/myRoR/wikiful$ vi app/models/article.rb
 	To git@github.com:limingth/myRoR.git
 	   cec5e80..679b9d3  master -> master
 	limingth@gmail ~/Github/myRoR/wikiful$ 
+
+**Thanks [Rick Thomas](https://plus.google.com/u/0/109332920695988460104) for all the help you gave to me**	
