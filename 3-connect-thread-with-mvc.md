@@ -315,16 +315,88 @@
 
 	Aliquam corrupti quod delectus. Et quia inventore est neque in. Quis earum facere eos molestiae. Odit quo deleniti aspernatur et iusto culpa quae. Rem ipsam porro perferendis itaque ut. Voluptatem ...
 
+### git push
+	limingth@gmail ~/Github/myRoR/wikiful$ git status
+	# On branch master
+	# Changes not staged for commit:
+	#   (use "git add <file>..." to update what will be committed)
+	#   (use "git checkout -- <file>..." to discard changes in working directory)
+	#
+	#	modified:   ../3-connect-thread-with-mvc.md
+	#	modified:   app/controllers/articles_controller.rb
+	#	modified:   app/views/articles/index.html.erb
+	#
+	no changes added to commit (use "git add" and/or "git commit -a")
+	limingth@gmail ~/Github/myRoR/wikiful$ git add .
+	limingth@gmail ~/Github/myRoR/wikiful$ git commit -a -m "add views"
+	[master cc63b9d] add views
+	 3 files changed, 142 insertions(+)
+	limingth@gmail ~/Github/myRoR/wikiful$ git push
+	Counting objects: 19, done.
+	Delta compression using up to 2 threads.
+	Compressing objects: 100% (10/10), done.
+	Writing objects: 100% (10/10), 3.16 KiB | 0 bytes/s, done.
+	Total 10 (delta 5), reused 0 (delta 0)
+	To git@github.com:limingth/myRoR.git
+	   5fd53b3..cc63b9d  master -> master
+	limingth@gmail ~/Github/myRoR/wikiful$ 
 
+### modify show action to view an individual article
+	limingth@gmail ~/Github/myRoR/wikiful$ vi app/controllers/articles_controller.rb 
+	  1 class ArticlesController < ApplicationController
+	  2   def index
+	  3         @articles = Article.order(updated_at: :desc).limit(25)
+	  4   end
+	  5 
+	  6   def show
+	  7         @article = Article.find(params[:id])
+	  8   end
+	  9   
 
+### need to revise our article show view so it displays the relevant data
+	limingth@gmail ~/Github/myRoR/wikiful$ vi app/views/articles/show.html.erb 
+	  1 <h1>This is the index view for show Articles</h1>
+	  2 
+	  3 <div>
+	  4   <h1><%= @article.title %></h1>
+	  5   <p>Published <%= @article.created_at.strftime('%b %d, %Y') %></p>
+	  6   <p>Filed under: <% @article.categories.each do |category| %>
+	  7     <%= category.name %>&nbsp;<% end %>
+	  8   </p>
+	  9   <div><%= @article.content %></div>
+	 10 </div>
 
+###  verify that this works by visiting (for instance) localhost:3000/articles/13
+	This is the index view for show Articles
 
+	Accusamus natus ut ut dolorem nemo pariatur velit ex
 
+	Published Nov 26, 2013
 
+	Filed under: History 
 
+	Ducimus ullam qui sit est delectus. Non optio sunt rem et. Totam tempora quidem. Ut incidunt eius autem provident occaecati. Est voluptas ea itaque fugiat numquam. Perspiciatis et nostrum. Veritatis quia eligendi sint odit. Rerum qui perspiciatis accusamus velit. Totam quo nemo. Eos et quo id odit deserunt sapiente error. Quia vel et mollitia ab non aut eveniet. Hic ea assumenda porro qui sed eum. Quam iure accusamus vel sunt blanditiis facere rem. Recusandae atque repudiandae explicabo quasi eos sed aut. Non voluptas ea minima id aut excepturi. Perferendis harum non unde eveniet dolores ...
 
+### add link to each article in index.html.erb
+	limingth@gmail ~/Github/myRoR/wikiful$ vi app/views/articles/index.html.erb 
+	  1 <h1> This is the index view for Articles </h1>
+	  2 
+	  3 <% @articles.each do |article| %>
+	  4   <div>
+	  5     <h3><%= link_to article.title, article %></h3>
 
+### Now you have a way to click through to individual articles
+	This is the index view for Articles
 
+	[aaa](http://localhost:3000/articles/101)
+
+	Published on Nov 27, 2013
+
+	Filed under: bbb 
+
+	this is a ...
+
+### git commit
 
 
 
