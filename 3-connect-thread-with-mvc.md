@@ -199,4 +199,133 @@
 	This is the view for show Articles
 
 ### git push
+	limingth@gmail ~/Github/myRoR/wikiful/app/views/articles$ cd ../../..
+	limingth@gmail ~/Github/myRoR/wikiful$ git status
+	# On branch master
+	# Changes not staged for commit:
+	#   (use "git add <file>..." to update what will be committed)
+	#   (use "git checkout -- <file>..." to discard changes in working directory)
+	#
+	#	modified:   ../3-connect-thread-with-mvc.md
+	#	modified:   config/routes.rb
+	#
+	# Untracked files:
+	#   (use "git add <file>..." to include in what will be committed)
+	#
+	#	app/controllers/articles_controller.rb
+	#	app/views/articles/
+	no changes added to commit (use "git add" and/or "git commit -a")
+	limingth@gmail ~/Github/myRoR/wikiful$ git add .
+	limingth@gmail ~/Github/myRoR/wikiful$ git commit -a -m "add controllers and view files"
+	[master 5fd53b3] add controllers and view files
+	 6 files changed, 169 insertions(+), 17 deletions(-)
+	 create mode 100644 wikiful/app/controllers/articles_controller.rb
+	 create mode 100644 wikiful/app/views/articles/index.html.erb
+	 create mode 100644 wikiful/app/views/articles/new.html.erb
+	 create mode 100644 wikiful/app/views/articles/show.html.erb
+	limingth@gmail ~/Github/myRoR/wikiful$ git push
+	Counting objects: 22, done.
+	Delta compression using up to 2 threads.
+	Compressing objects: 100% (12/12), done.
+	Writing objects: 100% (14/14), 3.32 KiB | 0 bytes/s, done.
+	Total 14 (delta 5), reused 0 (delta 0)
+	To git@github.com:limingth/myRoR.git
+	   e435fa1..5fd53b3  master -> master
+	limingth@gmail ~/Github/myRoR/wikiful$ 
+
+## Getting Your Model Data into Article Views
+
+### Before writing code, do this in Rails console
+	limingth@gmail ~/Github/myRoR/wikiful$ rails c
+	Loading development environment (Rails 4.0.1)
+
+### verify we have some articles in db
+	2.0.0-p247 :001 > Article.count
+	   (1.0ms)  SELECT COUNT(*) FROM "articles"
+	 => 101 
+	2.0.0-p247 :002 > 
+
+### show the most recent 25 articles
+	2.0.0-p247 :002 > Article.order(updated_at: :desc).limit(25)
+	  Article Load (16.3ms)  SELECT "articles".* FROM "articles" ORDER BY "articles"."updated_at" DESC LIMIT 25
+	 => #<ActiveRecord::Relation [#<Article id: 101, title: "aaa", content: "this is a", created_at: "2013-11-27 21:48:53", updated_at: "2013-11-27 21:48:53">, #<Article id: 100, title: "Blanditiis ea voluptatibus molestias consequatur un...", content: "Nihil doloribus rerum qui cumque at rerum cupiditat...", created_at: "2013-11-27 21:42:22", updated_at: "2013-11-27 21:42:22">, #<Article id: 99, title: "Exercitationem autem dolorum sed non porro ea qui", content: "Voluptas et tenetur. Perferendis maxime provident s...", created_at: "2013-11-27 21:42:22", updated_at: "2013-11-27 21:42:22">, #<Article id: 98, title: "Et excepturi aut et aut voluptatem enim quo", content: "Aliquam corrupti quod delectus. Et quia inventore e...", created_at: "2013-11-27 21:42:22", updated_at: "2013-11-27 21:42:22">, #<Article id: 97, title: "Nihil quis dolorem ut occaecati eos aut quia nam si...", content: "Non impedit eveniet iure cupiditate quisquam. Debit...", created_at: "2013-11-27 21:42:22", updated_at: "2013-11-27 21:42:22">, #<Article id: 96, title: "Dolor iure eaque et inventore iste et", content: "Odit quibusdam et dolorum consequatur tempore persp...", created_at: "2013-11-27 21:42:22", updated_at: "2013-11-27 21:42:22">, #<Article id: 95, title: "Odio est est voluptatum voluptates", content: "Minima atque facere cumque alias voluptate nesciunt...", created_at: "2013-11-27 21:42:22", updated_at: "2013-11-27 21:42:22">, #<Article id: 94, title: "Rerum est eveniet repudiandae", content: "Porro sit sed omnis et dolorem ab aut. Officiis qua...", created_at: "2013-11-27 21:42:22", updated_at: "2013-11-27 21:42:22">, #<Article id: 93, title: "Ullam sed consequatur et veniam eum rerum maiores", content: "Placeat aut harum numquam. Explicabo voluptas quibu...", created_at: "2013-11-27 21:42:22", updated_at: "2013-11-27 21:42:22">, #<Article id: 92, title: "Sed quasi ut cupiditate consequatur porro", content: "Voluptas quam vel quisquam ex dolorem. Minima qui m...", created_at: "2013-11-27 21:42:22", updated_at: "2013-11-27 21:42:22">, ...]> 
+	2.0.0-p247 :003 > 
+
+### now let's modify the index action on ArticlesController
+	limingth@gmail ~/Github/myRoR/wikiful$ vi app/controllers/articles_controller.rb 
+	  1 class ArticlesController < ApplicationController
+	  2   def index
+	  3         @articles = Article.order(updated_at: :desc).limit(25)
+	  4   end
+
+### in web browser open http://localhost:3000/articles
+	This is the index view for Articles
+
+* still get the stub view we created since we haven't modified our view to render...
+
+### have this view iterate over each article
+	limingth@gmail ~/Github/myRoR/wikiful$ vi app/views/articles/index.html.erb 
+	  1 <h1> This is the index view for Articles </h1>
+	  2 
+	  3 <% @articles.each do |article| %>
+	  4   <div>
+	  5     <h3><%= article.title %></h3>
+	  6         <p>Published on <%= article.created_at.strftime('%b %d, %Y') %></p>
+	  7     <p>Filed under: <% article.categories.each do |category| %> 
+	  8                       <%= category.name %>&nbsp;
+	  9                     <% end %>
+	 10     </p>            
+	 11     <p><%= truncate(article.content, length: 200) %></p>
+	 12   </div>
+	 13 <% end %>
+	 14 
+    
+### Go back to your browser and visit localhost:3000/articles/
+	This is the index view for Articles
+
+	aaa
+
+	Published on Nov 27, 2013
+
+	Filed under: bbb 
+
+	this is a
+
+	Blanditiis ea voluptatibus molestias consequatur unde enim placeat est
+
+	Published on Nov 27, 2013
+
+	Filed under: History 
+
+	Nihil doloribus rerum qui cumque at rerum cupiditate. Et maxime quis sint ad veniam sequi corporis. Laboriosam excepturi aut. Neque in et. Tenetur possimus dolor est deserunt ut laboriosam. Libero ...
+
+	Exercitationem autem dolorum sed non porro ea qui
+
+	Published on Nov 27, 2013
+
+	Filed under: History 
+
+	Voluptas et tenetur. Perferendis maxime provident sunt neque quos rerum exercitationem. Delectus officiis ullam quis aut distinctio. Eius laborum rem qui ut maxime vel. Harum sit earum. Aut rerum d...
+
+	Et excepturi aut et aut voluptatem enim quo
+
+	Published on Nov 27, 2013
+
+	Filed under: Mathematics 
+
+	Aliquam corrupti quod delectus. Et quia inventore est neque in. Quis earum facere eos molestiae. Odit quo deleniti aspernatur et iusto culpa quae. Rem ipsam porro perferendis itaque ut. Voluptatem ...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
