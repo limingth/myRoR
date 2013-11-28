@@ -716,3 +716,112 @@
 
 * you can see every article is underline with hyperlink
 
+### git commit
+	limingth@gmail ~/Github/myRoR/wikiful$ git status
+	# On branch category_views
+	# Changes not staged for commit:
+	#   (use "git add <file>..." to update what will be committed)
+	#   (use "git checkout -- <file>..." to discard changes in working directory)
+	#
+	#	modified:   ../3-connect-thread-with-mvc.md
+	#	modified:   app/views/articles/index.html.erb
+	#	modified:   app/views/articles/show.html.erb
+	#	modified:   config/routes.rb
+	#
+	# Untracked files:
+	#   (use "git add <file>..." to include in what will be committed)
+	#
+	#	app/controllers/categories_controller.rb
+	#	app/views/categories/
+	no changes added to commit (use "git add" and/or "git commit -a")
+	limingth@gmail ~/Github/myRoR/wikiful$ git add .
+	glimingth@gmail ~/Github/myRoR/wikiful$ git commit -a -m "add categories controller"
+	[category_views 1e1b83c] add categories controller
+	 7 files changed, 176 insertions(+), 2 deletions(-)
+	 create mode 100644 wikiful/app/controllers/categories_controller.rb
+	 create mode 100644 wikiful/app/views/categories/index.html.erb
+	 create mode 100644 wikiful/app/views/categories/show.html.erb
+	limingth@gmail ~/Github/myRoR/wikiful$ git push
+	fatal: The current branch category_views has no upstream branch.
+	To push the current branch and set the remote as upstream, use
+
+	    git push --set-upstream origin category_views
+
+	limingth@gmail ~/Github/myRoR/wikiful$ git checkout master
+	Switched to branch 'master'
+	limingth@gmail ~/Github/myRoR/wikiful$ git merge category_views
+	Updating 233e798..1e1b83c
+	Fast-forward
+	 3-connect-thread-with-mvc.md                     | 142 +++++++++++++++++++++++++++++++++
+	 wikiful/app/controllers/categories_controller.rb |  11 +++
+	 wikiful/app/views/articles/index.html.erb        |   2 +-
+	 wikiful/app/views/articles/show.html.erb         |   3 +-
+	 wikiful/app/views/categories/index.html.erb      |   9 +++
+	 wikiful/app/views/categories/show.html.erb       |  10 +++
+	 wikiful/config/routes.rb                         |   1 +
+	 7 files changed, 176 insertions(+), 2 deletions(-)
+	 create mode 100644 wikiful/app/controllers/categories_controller.rb
+	 create mode 100644 wikiful/app/views/categories/index.html.erb
+	 create mode 100644 wikiful/app/views/categories/show.html.erb
+	limingth@gmail ~/Github/myRoR/wikiful$ git push
+	Counting objects: 27, done.
+	Delta compression using up to 2 threads.
+	Compressing objects: 100% (16/16), done.
+	Writing objects: 100% (16/16), 2.71 KiB | 0 bytes/s, done.
+	Total 16 (delta 10), reused 0 (delta 0)
+	To git@github.com:limingth/myRoR.git
+	   233e798..1e1b83c  master -> master
+	limingth@gmail ~/Github/myRoR/wikiful$ 
+
+## A Better Welcome Page
+
+### modify welcome controller
+	limingth@gmail ~/Github/myRoR/wikiful$ vi app/controllers/welcome_controller.rb 
+	  1 class WelcomeController < ApplicationController
+	  2   def index
+	  3     @recent_articles = Article.all.last(5)
+	  4   end
+	  5 end
+
+### modify welcome view
+	limingth@gmail ~/Github/myRoR/wikiful$ vi app/views/welcome/index.html.erb 
+	  1 <h1>Welcome to Wikiful</h1>
+	  2 <p>This is a placeholder for our landing page. Eventually we'll put something cooler h    ere!</p>
+	  3 
+	  4 <p class="lead">Welcome to Wikiful. Most recent articles below:</p>
+	  5 <div class="articles">
+	  6   <% @recent_articles.each do |article| %>
+	  7     <h2>
+	  8       <%= link_to article.title, article %>
+	  9     </h2>
+	 10     <div class="article-info">
+	 11     Published <%= article.created_at.strftime('%b %d, %Y') %> |
+	 12     Filed under <%= article.categories.map { |category| link_to category.name, categor    y_path(category.id)}.join(', ').html_safe %>   
+	 13     </div>
+	 14     <div class="content">
+	 15       <%= truncate(article.content, :length => 400) %><br />
+	 16       <%= link_to "Read more", article %>
+	 17     </div>
+	 18   <% end %>
+	 19 </div>
+	 20 
+
+### test the homepage localhost:3000
+
+	Welcome to Wikiful
+
+	This is a placeholder for our landing page. Eventually we'll put something cooler here!
+
+	Welcome to Wikiful. Most recent articles below:
+
+	Et excepturi aut et aut voluptatem enim quo
+
+	Published Nov 27, 2013 | Filed under Mathematics
+	Aliquam corrupti quod delectus. Et quia inventore est neque in. Quis earum facere eos molestiae. Odit quo deleniti aspernatur et iusto culpa quae. Rem ipsam porro perferendis itaque ut. Voluptatem vel et cum est. Ut quia fugit. Molestiae quia animi expedita modi. Esse optio sunt qui ducimus est. Ducimus ut nam. Eveniet velit porro. Voluptatem et optio. Nobis magnam quidem itaque perferendis et ...
+	<Read more>
+
+	New Test
+
+	Published Nov 27, 2013 | Filed under Biology, Computer Science
+	This is a test for new method
+	<Read more>

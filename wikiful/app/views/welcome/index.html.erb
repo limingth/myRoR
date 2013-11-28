@@ -1,4 +1,20 @@
 <h1>Welcome to Wikiful</h1>
 <p>This is a placeholder for our landing page. Eventually we'll put something cooler here!</p>
 
+<p class="lead">Welcome to Wikiful. Most recent articles below:</p>
+<div class="articles">
+  <% @recent_articles.each do |article| %>
+    <h2>
+      <%= link_to article.title, article %>
+    </h2>
+    <div class="article-info">
+    Published <%= article.created_at.strftime('%b %d, %Y') %> |
+    Filed under <%= article.categories.map { |category| link_to category.name, category_path(category.id)}.join(', ').html_safe %> 
+    </div>
+    <div class="content">
+      <%= truncate(article.content, :length => 400) %><br />
+      <%= link_to "Read more", article %>
+    </div>
+  <% end %>
+</div>
 
