@@ -426,4 +426,23 @@
 	   355c21a..cd2183e  gh-pages -> gh-pages
 	limingth@gmail ~/Github/myRoR/wikiful$ 
 
+### demo picture of web browser looks like
 ![wikiful-with-navbar-sidebar](wikiful-with-navbar-sidebar.png)
+
+## Checkout Twitter-Bootstrap-Rails Scaffolding
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
