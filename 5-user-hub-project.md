@@ -419,7 +419,114 @@
 	psql (9.3.1)
 	Type "help" for help.
 
-	userhub_development=# 
+	userhub_development=# \q
+	limingth@gmail ~/Github/myRoR/userhub$ 
 
 ### git commit
+	limingth@gmail ~/Github/myRoR/userhub$ git status
+	# On branch master
+	# Changes not staged for commit:
+	#   (use "git add <file>..." to update what will be committed)
+	#   (use "git checkout -- <file>..." to discard changes in working directory)
+	#
+	#	modified:   ../2-work-with-psql.md
+	#	modified:   ../5-user-hub-project.md
+	#	modified:   Gemfile
+	#	modified:   Gemfile.lock
+	#	modified:   config/database.yml
+	#
+	no changes added to commit (use "git add" and/or "git commit -a")
+	limingth@gmail ~/Github/myRoR/userhub$ git commit -a -m "enable pSQL and create databse"
+	[master 8ecfdb9] enable pSQL and create databse
+	 5 files changed, 156 insertions(+), 12 deletions(-)
+	limingth@gmail ~/Github/myRoR/userhub$ git push
+	Counting objects: 17, done.
+	Delta compression using up to 2 threads.
+	Compressing objects: 100% (9/9), done.
+	Writing objects: 100% (9/9), 1.89 KiB | 0 bytes/s, done.
+	Total 9 (delta 8), reused 0 (delta 0)
+	To git@github.com:limingth/myRoR.git
+	   595c4c3..8ecfdb9  master -> master
+	limingth@gmail ~/Github/myRoR/userhub$ 
+
+## Step 4 - Modeling Students, Majors and Users for stuhub
+
+### create Student model
+	limingth@gmail ~/Github/myRoR/userhub$ rails generate model Student name:string email:text
+	      invoke  active_record
+	      create    db/migrate/20131128173148_create_students.rb
+	      create    app/models/student.rb
+	      invoke    test_unit
+	      create      test/models/student_test.rb
+	      create      test/fixtures/students.yml
+	limingth@gmail ~/Github/myRoR/userhub$ 
+
+### create user model
+	limingth@gmail ~/Github/myRoR/userhub$ vi app/models/student.rb 
+	  1 class Student < ActiveRecord::Base
+	  2 belongs_to :user
+	  3 end
+
+### add validates
+	limingth@gmail ~/Github/myRoR/userhub$ vi app/models/student.rb 
+	  1 class Student < ActiveRecord::Base
+	  2 belongs_to :user
+	  3 validates :name, presence: true
+	  4 validates :email, presence: true
+	  5 end
+
+### migrate model
+	limingth@gmail ~/Github/myRoR/userhub$ rake db:migrate
+	==  CreateStudents: migrating =================================================
+	-- create_table(:students)
+	   -> 0.0314s
+	==  CreateStudents: migrated (0.0320s) ========================================
+
+	limingth@gmail ~/Github/myRoR/userhub$ 
+
+### check database in rails console
+	limingth@gmail ~/Github/myRoR/userhub$ rails c
+	Loading development environment (Rails 4.0.1)
+	2.0.0-p247 :001 > Student
+	 => Student(no database connection) 
+	2.0.0-p247 :002 > Student.count
+	   (1.1ms)  SELECT COUNT(*) FROM "students"
+	 => 0 
+	2.0.0-p247 :003 > Student.first
+	  Student Load (2.3ms)  SELECT "students".* FROM "students" ORDER BY "students"."id" ASC LIMIT 1
+	 => nil 
+	2.0.0-p247 :004 > 
+
+### add first record in database
+	2.0.0-p247 :004 > a = Student.new(name:"li ming", email:"limingth@gmail.com")
+	 => #<Student id: nil, name: "li ming", email: "limingth@gmail.com", created_at: nil, updated_at: nil> 
+	2.0.0-p247 :005 > a.save
+	   (0.8ms)  BEGIN
+	  SQL (12.8ms)  INSERT INTO "students" ("created_at", "email", "name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", Thu, 28 Nov 2013 17:37:33 UTC +00:00], ["email", "limingth@gmail.com"], ["name", "li ming"], ["updated_at", Thu, 28 Nov 2013 17:37:33 UTC +00:00]]
+	   (0.9ms)  COMMIT
+	 => true 
+	2.0.0-p247 :006 > Student
+	 => Student(id: integer, name: string, email: text, created_at: datetime, updated_at: datetime) 
+	2.0.0-p247 :007 > Student.count
+	   (1.6ms)  SELECT COUNT(*) FROM "students"
+	 => 1 
+	2.0.0-p247 :008 > Student.first
+	  Student Load (1.7ms)  SELECT "students".* FROM "students" ORDER BY "students"."id" ASC LIMIT 1
+	 => #<Student id: 1, name: "li ming", email: "limingth@gmail.com", created_at: "2013-11-28 17:37:33", updated_at: "2013-11-28 17:37:33"> 
+	2.0.0-p247 :009 > Student.last
+	  Student Load (1.5ms)  SELECT "students".* FROM "students" ORDER BY "students"."id" DESC LIMIT 1
+	 => #<Student id: 1, name: "li ming", email: "limingth@gmail.com", created_at: "2013-11-28 17:37:33", updated_at: "2013-11-28 17:37:33"> 
+	2.0.0-p247 :010 > 
+
+### git commit
+
+
+
+
+
+
+
+
+
+
 
