@@ -426,4 +426,4 @@
 	   355c21a..cd2183e  gh-pages -> gh-pages
 	limingth@gmail ~/Github/myRoR/wikiful$ 
 
-[!wikiful-with-navbar-sidebar](wikiful-with-navbar-sidebar.png)
+![wikiful-with-navbar-sidebar](wikiful-with-navbar-sidebar.png)
