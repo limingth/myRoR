@@ -397,6 +397,150 @@
 	this is a ...
 
 ### git commit
+	limingth@gmail ~/Github/myRoR/wikiful$ git status
+	# On branch master
+	# Changes not staged for commit:
+	#   (use "git add <file>..." to update what will be committed)
+	#   (use "git checkout -- <file>..." to discard changes in working directory)
+	#
+	#	modified:   ../3-connect-thread-with-mvc.md
+	#	modified:   app/controllers/articles_controller.rb
+	#	modified:   app/views/articles/index.html.erb
+	#	modified:   app/views/articles/show.html.erb
+	#
+	no changes added to commit (use "git add" and/or "git commit -a")
+	limingth@gmail ~/Github/myRoR/wikiful$ git add .
+	limingth@gmail ~/Github/myRoR/wikiful$ git commit -a -m "add show"
+	[master becc65b] add show
+	 4 files changed, 83 insertions(+), 1 deletion(-)
+	limingth@gmail ~/Github/myRoR/wikiful$ git push
+	Counting objects: 21, done.
+	Delta compression using up to 2 threads.
+	Compressing objects: 100% (11/11), done.
+	Writing objects: 100% (11/11), 2.03 KiB | 0 bytes/s, done.
+	Total 11 (delta 7), reused 0 (delta 0)
+	To git@github.com:limingth/myRoR.git
+	   cc63b9d..becc65b  master -> master
+	limingth@gmail ~/Github/myRoR/wikiful$ 
+
+## Letting Users Write and Publish Articles
+
+### alter the new and create actions and add private article_params method
+	limingth@gmail ~/Github/myRoR/wikiful$ vi app/controllers/articles_controller.rb 
+	  9 
+	 10   def new
+	 11     @article = Article.new
+	 12   end
+	 13 
+	 14   def create
+	 15     @article = Article.new(article_params)
+	 16     if @article.save
+	 17       redirect_to @article
+	 18     else
+	 19       render "new"
+	 20     end
+	 21   end
+	 22 
+	 23 private
+	 24   def article_params
+	 25     params.require(:article).permit(:title, :content, :category_ids => [])
+	 26   end
+	 27 
+
+### modify new.html.erb
+	limingth@gmail ~/Github/myRoR/wikiful$ vi app/views/articles/new.html.erb 
+	  1 <h1>This is the index view for new Articles</h1>
+	  2 
+	  3 <h1>Write and Publish a New Article</h1>
+	  4 <% if @article.errors.any? %>
+	  5 <div class="error_messages">
+	  6     <h2>You're missing some fields</h2>
+	  7     <ul>
+	  8       <% @article.errors.full_messages.each do |message| %>
+	  9         <li><%= message %></li>
+	 10       <% end %>
+	 11     </ul>
+	 12   </div>
+	 13 <% end %>
+	 14 <%= render :partial => 'form' %>
+
+### create _form.html 
+	limingth@gmail ~/Github/myRoR/wikiful$ vi app/views/articles/_form.html
+	  1 <%= form_for @article do |f| %>
+	  2   <div class="control-group">
+	  3     <%= f.label :title %>
+	  4     <div class="controls">
+	  5       <%= f.text_field :title %>
+	  6     </div>
+	  7   </div>
+	  8   <div class="control-group">
+	  9     <%= f.label :content %>
+	 10     <div class="controls">
+	 11       <%= f.text_area :content, rows: "20", cols: "100" %>
+	 12     </div>
+	 13   </div>
+	 14 
+	 15   <div class="category-control">
+	 16     <%= f.label 'File under at least one category' %>
+	 17     <% Category.all.order(name: :asc).each do |category| %>
+	 18       <div>
+	 19         <%= check_box_tag "article[category_ids][]", category.id %>
+	 20         <%= category.name %>
+	 21       </div>
+	 22     <% end %>
+	 23   </div>
+	 24 
+	 25   <div class="form-actions">
+	 26     <%= f.submit nil %>
+	 27     <%= link_to 'Cancel', articles_path %>
+	 28   </div>
+	 29 <% end %>
+
+### test new method in web browser using http://localhost:3000/articles/new
+	This is the index view for new Articles
+
+	Write and Publish a New Article
+
+	Title
+
+	Content
+
+	File under at least one category  
+	 Biology
+	 Biology
+	 Biology
+	 Chemistry
+	 Chemistry
+	 Chemistry
+	 Computer Science
+	 Computer Science
+	 Computer Science
+	 History
+	 History
+	 History
+	 Literature
+	 Literature
+	 Literature
+	 Mathematics
+	 Mathematics
+	 Mathematics
+	 Music Theory
+	 Music Theory
+	 Music Theory
+	 Sociology
+	 Sociology
+	 Sociology
+	 bbb
+	 Cancel
+
+### git commit
+
+
+
+
+
+
+
 
 
 
