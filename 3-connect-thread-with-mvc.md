@@ -569,7 +569,7 @@
 ### develop new feature on a new branch
 	limingth@gmail ~/Github/myRoR/wikiful$ git branch
 	* master
-	limingth@gmail ~/Github/myRoR/wikiful$ git checkout -b category_views
+	limingth@gmail ~/Github/myRoR/wikiful$ git ma -b category_views
 	Switched to a new branch 'category_views'
 	limingth@gmail ~/Github/myRoR/wikiful$ git branch
 	* category_views
@@ -735,7 +735,7 @@
 	#	app/views/categories/
 	no changes added to commit (use "git add" and/or "git commit -a")
 	limingth@gmail ~/Github/myRoR/wikiful$ git add .
-	glimingth@gmail ~/Github/myRoR/wikiful$ git commit -a -m "add categories controller"
+	limingth@gmail ~/Github/myRoR/wikiful$ git commit -a -m "add categories controller"
 	[category_views 1e1b83c] add categories controller
 	 7 files changed, 176 insertions(+), 2 deletions(-)
 	 create mode 100644 wikiful/app/controllers/categories_controller.rb
