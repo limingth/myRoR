@@ -281,10 +281,145 @@
 	To git@github.com:limingth/myRoR.git
 	   c7439e2..acfc7d5  master -> master
 	limingth@gmail ~/Github/myRoR/userhub$ 
-	
-## Step 3 - 
 
+## Step 3 - Enable pSQL and Create database
 
+### modify Gemfile
+	limingth@gmail ~/Github/myRoR/userhub$ vi Gemfile
+	  1 source 'https://rubygems.org'
+	  2 
+	  3 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+	  4 gem 'rails', '4.0.1'
+	  5 
+	  6 # Use sqlite3 as the database for Active Record
+	  7 #gem 'sqlite3'
+	  8 gem 'pg'
 
+### bundle install
+	limingth@gmail ~/Github/myRoR/userhub$ bundle install
+	Resolving dependencies...
+	Using rake (10.1.0) 
+	Using i18n (0.6.5) 
+	Using minitest (4.7.5) 
+	Using multi_json (1.8.2) 
+	Using atomic (1.1.14) 
+	Using thread_safe (0.1.3) 
+	Using tzinfo (0.3.38) 
+	Using activesupport (4.0.1) 
+	Using builder (3.1.4) 
+	Using erubis (2.7.0) 
+	Using rack (1.5.2) 
+	Using rack-test (0.6.2) 
+	Using actionpack (4.0.1) 
+	Using mime-types (1.25.1) 
+	Using polyglot (0.3.3) 
+	Using treetop (1.4.15) 
+	Using mail (2.5.4) 
+	Using actionmailer (4.0.1) 
+	Using activemodel (4.0.1) 
+	Using activerecord-deprecated_finders (1.0.3) 
+	Using arel (4.0.1) 
+	Using activerecord (4.0.1) 
+	Using bundler (1.3.5) 
+	Using coffee-script-source (1.6.3) 
+	Using execjs (2.0.2) 
+	Using coffee-script (2.2.0) 
+	Using thor (0.18.1) 
+	Using railties (4.0.1) 
+	Using coffee-rails (4.0.1) 
+	Using hike (1.2.3) 
+	Using jbuilder (1.5.2) 
+	Using jquery-rails (3.0.4) 
+	Using json (1.8.1) 
+	Using pg (0.17.0) 
+	Using tilt (1.4.1) 
+	Using sprockets (2.10.1) 
+	Using sprockets-rails (2.0.1) 
+	Using rails (4.0.1) 
+	Using rdoc (3.12.2) 
+	Using sass (3.2.12) 
+	Using sass-rails (4.0.1) 
+	Using sdoc (0.3.20) 
+	Using turbolinks (1.3.1) 
+	Using uglifier (2.3.1) 
+	Your bundle is complete!
+	Use `bundle show [gemname]` to see where a bundled gem is installed.
+	limingth@gmail ~/Github/myRoR/userhub$ 
 
+### make sure using pSQL 9.3.1
+	limingth@gmail ~/Github/myRoR/wikiful$ which psql
+	/usr/bin/psql
+	limingth@gmail ~/Github/myRoR/wikiful$ export PATH="/Applications/Postgres93.app/Contents/MacOS/bin:$PATH"
+	limingth@gmail ~/Github/myRoR/wikiful$ psql --version
+	psql (PostgreSQL) 9.3.1
+	limingth@gmail ~/Github/myRoR/wikiful$ which psql
+	/Applications/Postgres93.app/Contents/MacOS/bin/psql
+	limingth@gmail ~/Github/myRoR/wikiful$ 
+
+### create user
+	limingth@gmail ~/Github/myRoR/userhub$ createuser -s userhub
+
+#### in case you encountered the error message like this
+	createuser: could not connect to database postgres: could not connect to server: No such file or directory
+		Is the server running locally and accepting
+		connections on Unix domain socket "/var/pgsql_socket/.s.PGSQL.5432"?
+	limingth@gmail ~/Github/myRoR/userhub$ 
+
+#### check which createuser command you are using
+	limingth@gmail ~/Github/myRoR/userhub$ which createuser
+	/usr/bin/createuser
+	limingth@gmail ~/Github/myRoR/userhub$ 
+
+#### make user PATH is correct
+	limingth@gmail ~/Github/myRoR/userhub$ export PATH="/Applications/Postgres93.app/Contents/MacOS/bin:$PATH"
+	limingth@gmail ~/Github/myRoR/userhub$ which createuser
+	/Applications/Postgres93.app/Contents/MacOS/bin/createuser
+	limingth@gmail ~/Github/myRoR/userhub$ 
+
+### modify config/database.yml
+	limingth@gmail ~/Github/myRoR/userhub$ vi config/database.yml 
+	# SQLite version 3.x 
+	#   gem install sqlite3
+	#
+	#   Ensure the SQLite 3 gem is defined in your Gemfile
+	#   gem 'sqlite3'
+	development:
+	  adapter: postgresql
+	  database: userhub_development
+	  encoding: unicode
+	  user: userhub
+	  host: localhost
+	  pool: 5
+	  timeout: 5000
+
+	# Warning: The database defined as "test" will be erased and 
+	# re-generated from your development database when you run "rake".
+	# Do not set this db to the same as development or production.
+	test:
+	  adapter: postgresql
+	  database: userhub_test
+	  encoding: unicode
+	  user: userhub
+	  host: localhost
+	  pool: 5
+	  timeout: 5000
+
+	production:
+	  adapter: postgresql
+	  database: userhub_production
+	  encoding: unicode
+	  pool: 5
+	  timeout: 5000
+
+### verify the database is created
+	limingth@gmail ~/Github/myRoR/userhub$ psql -d userhub_development
+	psql: FATAL:  database "userhub_development" does not exist
+	limingth@gmail ~/Github/myRoR/userhub$ rake db:create
+	limingth@gmail ~/Github/myRoR/userhub$ psql -d userhub_development
+	psql (9.3.1)
+	Type "help" for help.
+
+	userhub_development=# 
+
+### git commit
 

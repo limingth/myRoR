@@ -221,7 +221,8 @@ http://www.postgresqltutorial.com/?wpdmact=process&did=MS5ob3RsaW5r
 	Use `bundle show [gemname]` to see where a bundled gem is installed.
 	limingth@gmail ~/Github/myRoR/wikiful$ 
 
-### 
+### modify config/database.yml
+	limingth@gmail ~/Github/myRoR/wikiful$ vi config/database.yml 
 	  1 # SQLite version 3.x
 	  2 #   gem install sqlite3
 	  3 #
