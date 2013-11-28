@@ -431,11 +431,35 @@
 
 ## Checkout Twitter-Bootstrap-Rails Scaffolding
 
+### new themed views 
+	limingth@gmail ~/Github/myRoR/wikiful$ rails g bootstrap:themed articles -f
+	       force  app/views/articles/index.html.erb
+	       force  app/views/articles/new.html.erb
+	      create  app/views/articles/edit.html.erb
+	      create  app/views/articles/_form.html.erb
+	       force  app/views/articles/show.html.erb
 
+### git status
+	limingth@gmail ~/Github/myRoR/wikiful$ git status
+	# On branch master
+	# Changes not staged for commit:
+	#   (use "git add <file>..." to update what will be committed)
+	#   (use "git checkout -- <file>..." to discard changes in working directory)
+	#
+	#	modified:   app/views/articles/index.html.erb
+	#	modified:   app/views/articles/new.html.erb
+	#	modified:   app/views/articles/show.html.erb
+	#
+	# Untracked files:
+	#   (use "git add <file>..." to include in what will be committed)
+	#
+	#	app/views/articles/_form.html.erb
+	#	app/views/articles/edit.html.erb
+	no changes added to commit (use "git add" and/or "git commit -a")
+	limingth@gmail ~/Github/myRoR/wikiful$ 
 
-
-
-
+### demo picture of web browser looks like
+![wikiful-articles-table-view](wikiful-articles-table-view.png)
 
 
 

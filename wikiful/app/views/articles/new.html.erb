@@ -1,14 +1,5 @@
-<h1>This is the index view for new Articles</h1>
-
-<h1>Write and Publish a New Article</h1>
-<% if @article.errors.any? %>
-<div class="error_messages">
-    <h2>You're missing some fields</h2>
-    <ul>
-      <% @article.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+<%- model_class = Article -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h1>
+</div>
 <%= render :partial => 'form' %>
