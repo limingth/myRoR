@@ -534,6 +534,35 @@
 	 Cancel
 
 ### git commit
+	limingth@gmail ~/Github/myRoR/wikiful$ git status
+	# On branch master
+	# Changes not staged for commit:
+	#   (use "git add <file>..." to update what will be committed)
+	#   (use "git checkout -- <file>..." to discard changes in working directory)
+	#
+	#	modified:   ../3-connect-thread-with-mvc.md
+	#	modified:   app/controllers/articles_controller.rb
+	#	modified:   app/views/articles/new.html.erb
+	#
+	# Untracked files:
+	#   (use "git add <file>..." to include in what will be committed)
+	#
+	#	app/views/articles/_form.html
+	no changes added to commit (use "git add" and/or "git commit -a")
+	limingth@gmail ~/Github/myRoR/wikiful$ git add .
+	limingth@gmail ~/Github/myRoR/wikiful$ git commit -a -m "add new method"
+	[master 3172af2] add new method
+	 4 files changed, 200 insertions(+), 2 deletions(-)
+	 create mode 100644 wikiful/app/views/articles/_form.html
+	limingth@gmail ~/Github/myRoR/wikiful$ git push
+	Counting objects: 20, done.
+	Delta compression using up to 2 threads.
+	Compressing objects: 100% (11/11), done.
+	Writing objects: 100% (11/11), 2.66 KiB | 0 bytes/s, done.
+	Total 11 (delta 5), reused 0 (delta 0)
+	To git@github.com:limingth/myRoR.git
+	   becc65b..3172af2  master -> master
+	limingth@gmail ~/Github/myRoR/wikiful$ 
 
 
 
