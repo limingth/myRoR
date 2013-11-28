@@ -519,14 +519,191 @@
 	2.0.0-p247 :010 > 
 
 ### git commit
+	limingth@gmail ~/Github/myRoR/userhub$ git status
+	# On branch master
+	# Changes not staged for commit:
+	#   (use "git add <file>..." to update what will be committed)
+	#   (use "git checkout -- <file>..." to discard changes in working directory)
+	#
+	#	modified:   ../5-user-hub-project.md
+	#
+	# Untracked files:
+	#   (use "git add <file>..." to include in what will be committed)
+	#
+	#	app/models/student.rb
+	#	db/migrate/
+	#	db/schema.rb
+	#	test/fixtures/students.yml
+	#	test/models/student_test.rb
+	no changes added to commit (use "git add" and/or "git commit -a")
+	limingth@gmail ~/Github/myRoR/userhub$ git add .
+	limingth@gmail ~/Github/myRoR/userhub$ git commit -a -m "add Student model"
+	[master 0712f6f] add Student model
+	 6 files changed, 165 insertions(+), 1 deletion(-)
+	 create mode 100644 userhub/app/models/student.rb
+	 create mode 100644 userhub/db/migrate/20131128173148_create_students.rb
+	 create mode 100644 userhub/db/schema.rb
+	 create mode 100644 userhub/test/fixtures/students.yml
+	 create mode 100644 userhub/test/models/student_test.rb
+	limingth@gmail ~/Github/myRoR/userhub$ git push
+	Counting objects: 24, done.
+	Delta compression using up to 2 threads.
+	Compressing objects: 100% (16/16), done.
+	Writing objects: 100% (16/16), 3.32 KiB | 0 bytes/s, done.
+	Total 16 (delta 5), reused 0 (delta 0)
+	To git@github.com:limingth/myRoR.git
+	   8ecfdb9..0712f6f  master -> master
+	limingth@gmail ~/Github/myRoR/userhub$ 
 
+## Step 5 - use MVC to view students info
 
+### create the students controller
+	limingth@gmail ~/Github/myRoR/userhub$ vi app/controllers/students_controller.rb
+	class StudentsController < ApplicationController
 
+	  def index
+	  end 
 
+	end
 
+### modify routes.rb
+	limingth@gmail ~/Github/myRoR/userhub$ vi config/routes.rb 
+	  1 Userhub::Application.routes.draw do
+	  2   get "welcome/index"
+	  3   # The priority is based upon order of creation: first created -> highest priority.
+	  4   # See how all your routes lay out with "rake routes".
+	  5 
+	  6   # You can have the root of your site routed with "root"
+	  7   root 'welcome#index'
+	  8   resources :students
+	  9   
 
+### create students folder and index view file
+	limingth@gmail ~/Github/myRoR/userhub$ mkdir app/views/students
+	limingth@gmail ~/Github/myRoR/userhub$ vi app/views/students/index.html.erb
+	  1 <h1> This is the index view for students </h1>
+	  2 
 
+### in web browser open http://localhost:3000/students
 
+	ActiveRecord::PendingMigrationError
+	Migrations are pending; run 'bin/rake db:migrate RAILS_ENV=development' to resolve this issue.
 
+	Rails.root: /Users/limingth/Github/myRoR/userhub
 
+### re-migrate db and restart rails server
+	limingth@gmail ~/Github/myRoR/userhub$ rake db:migrate RAILS_ENV=development
+	limingth@gmail ~/Github/myRoR/userhub$ rails s
+	=> Booting WEBrick
+	=> Rails 4.0.1 application starting in development on http://0.0.0.0:3000
+	=> Run `rails server -h` for more startup options
+	=> Ctrl-C to shutdown server
+	[2013-11-28 09:54:08] INFO  WEBrick 1.3.1
+	[2013-11-28 09:54:08] INFO  ruby 2.0.0 (2013-06-27) [x86_64-darwin12.4.0]
+	[2013-11-28 09:54:08] INFO  WEBrick::HTTPServer#start: pid=24621 port=3000
 
+### in web browser open http://localhost:3000/students
+
+	This is the index view for students
+
+### now let's modify the index action on ArticlesController
+	limingth@gmail ~/Github/myRoR/userhub$ vi app/controllers/students_controller.rb 
+	class StudentsController < ApplicationController
+
+	  def index
+	    @students = Student.order(updated_at: :desc).limit(25)
+	  end 
+
+	end
+
+### in web browser open http://localhost:3000/students
+	This is the index view for students
+
+* still no student info since we haven't modified the view
+
+### modify index view 
+	limingth@gmail ~/Github/myRoR/userhub$ vi app/views/students/index.html.erb 
+	<h1> This is the index view for students </h1>
+
+	<% @students.each do |student| %>
+	  <div>
+	    <h3><%= student.name %></h3>
+	      <p><%= student.email %></p>
+	  </div>
+	<% end %>
+
+### in web browser open http://localhost:3000/students
+	           
+	This is the index view for students
+
+	li ming
+
+	limingth@gmail.com
+
+## Step 6 - new and delete students info
+
+### modify articles_controller.rb
+	limingth@gmail ~/Github/myRoR/userhub$ vi app/controllers/students_controller.rb 
+	class StudentsController < ApplicationController
+
+	  def index
+	    @students = Student.order(updated_at: :desc).limit(25)
+	  end 
+
+	  def new 
+	    @student = Student.new
+	  end 
+
+	  def create
+	    @student = Student.new(student_params)
+	    if @student.save
+	      redirect_to @student
+	    else
+	      render "new"
+	    end 
+	  end 
+
+	private
+	  def student_params
+	    params.require(:student).permit(:name, :email)
+	  end
+
+	end
+
+### edit new.html.erb
+	limingth@gmail ~/Github/myRoR/userhub$ vi app/views/students/new.html.erb
+	<h1>This is the new view for students</h1>
+
+	<%= form_for @student do |f| %>
+	  <div class="control-group">
+	    <%= f.label :name %>
+	    <div class="controls">
+	      <%= f.text_field :name %>
+	    </div>
+	  </div>
+
+	  <div class="control-group">
+	    <%= f.label :email %>
+	    <div class="controls">
+	      <%= f.text_area :email, cols: "30" %>
+	    </div>
+	  </div>
+
+	  <div class="form-actions">
+	    <%= f.submit nil %>
+	    <%= link_to 'Cancel', students_path %>
+	  </div>
+
+	<% end %>
+
+### modify show.html.erb
+	limingth@gmail ~/Github/myRoR/userhub$ vi app/views/students/show.html.erb
+	<h1>This is the show view for student</h1>
+	 
+	<div>
+	  <h1><%= @student.name %></h1>
+	  <h1><%= @student.email %></h1>
+	  <p>Published <%= @student.created_at.strftime('%b %d, %Y') %></p>
+	  <a href="/students">Back to students info page</a>
+	  </p>
+	</div>

@@ -1,0 +1,23 @@
+<h1>This is the new view for students</h1>
+
+<%= form_for @student do |f| %>
+  <div class="control-group">
+    <%= f.label :name %>
+    <div class="controls">
+      <%= f.text_field :name %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :email %>
+    <div class="controls">
+      <%= f.text_area :email, cols: "30" %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil %>
+    <%= link_to 'Cancel', students_path %>
+  </div>
+
+<% end %>

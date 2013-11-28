@@ -129,7 +129,7 @@
 
 ### create the articles controller
 	limingth@gmail ~/Github/myRoR/wikiful$ vi app/controllers/articles_controller.rb
-	  1 ass ArticlesController < ApplicationController
+	  1 class ArticlesController < ApplicationController
 	  2   def index
 	  3   end
 	  4   

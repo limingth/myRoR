@@ -1,0 +1,9 @@
+<h1> This is the index view for students </h1>
+
+<% @students.each do |student| %>
+  <div>
+    <h3><%= student.name %></h3>
+      <p><%= student.email %></p>
+  </div>
+<% end %>
+

@@ -1,0 +1,9 @@
+<h1>This is the show view for student</h1>
+ 
+<div>
+  <h1><%= @student.name %></h1>
+  <h1><%= @student.email %></h1>
+  <p>Published <%= @student.created_at.strftime('%b %d, %Y') %></p>
+  <a href="/students">Back to students info page</a>
+  </p>
+</div>
