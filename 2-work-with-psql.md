@@ -310,7 +310,7 @@ http://www.postgresqltutorial.com/?wpdmact=process&did=MS5ob3RsaW5r
 	limingth@gmail ~/Github/myRoR/wikiful$ 
 
 ### create user model
-limingth@gmail ~/Github/myRoR/wikiful$ vi app/models/article.rb 
+	limingth@gmail ~/Github/myRoR/wikiful$ vi app/models/article.rb 
 	  1 class Article < ActiveRecord::Base
 	  2 belongs_to :user
 	  3 end

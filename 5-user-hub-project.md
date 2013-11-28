@@ -198,7 +198,90 @@
 	User informations coming soon...
 
 ### git commit
-
+	limingth@gmail ~/Github/myRoR/userhub$ git status
+	# On branch master
+	# Untracked files:
+	#   (use "git add <file>..." to include in what will be committed)
+	#
+	#	../5-user-hub-project.md
+	#	./
+	nothing added to commit but untracked files present (use "git add" to track)
+	limingth@gmail ~/Github/myRoR/userhub$ git add ../5-user-hub-project.md 
+	limingth@gmail ~/Github/myRoR/userhub$ git add ./
+	limingth@gmail ~/Github/myRoR/userhub$ git commit -a -m "Step 2 - Create the landing page"
+	[master acfc7d5] Step 2 - Create the landing page
+	 61 files changed, 1056 insertions(+)
+	 create mode 100644 5-user-hub-project.md
+	 create mode 100644 userhub/.gitignore
+	 create mode 100644 userhub/Gemfile
+	 create mode 100644 userhub/Gemfile.lock
+	 create mode 100644 userhub/README.rdoc
+	 create mode 100644 userhub/Rakefile
+	 create mode 100644 userhub/app/assets/images/.keep
+	 create mode 100644 userhub/app/assets/javascripts/application.js
+	 create mode 100644 userhub/app/assets/javascripts/welcome.js.coffee
+	 create mode 100644 userhub/app/assets/stylesheets/application.css
+	 create mode 100644 userhub/app/assets/stylesheets/welcome.css.scss
+	 create mode 100644 userhub/app/controllers/application_controller.rb
+	 create mode 100644 userhub/app/controllers/concerns/.keep
+	 create mode 100644 userhub/app/controllers/welcome_controller.rb
+	 create mode 100644 userhub/app/helpers/application_helper.rb
+	 create mode 100644 userhub/app/helpers/welcome_helper.rb
+	 create mode 100644 userhub/app/mailers/.keep
+	 create mode 100644 userhub/app/models/.keep
+	 create mode 100644 userhub/app/models/concerns/.keep
+	 create mode 100644 userhub/app/views/layouts/application.html.erb
+	 create mode 100644 userhub/app/views/welcome/index.html.erb
+	 create mode 100755 userhub/bin/bundle
+	 create mode 100755 userhub/bin/rails
+	 create mode 100755 userhub/bin/rake
+	 create mode 100644 userhub/config.ru
+	 create mode 100644 userhub/config/application.rb
+	 create mode 100644 userhub/config/boot.rb
+	 create mode 100644 userhub/config/database.yml
+	 create mode 100644 userhub/config/environment.rb
+	 create mode 100644 userhub/config/environments/development.rb
+	 create mode 100644 userhub/config/environments/production.rb
+	 create mode 100644 userhub/config/environments/test.rb
+	 create mode 100644 userhub/config/initializers/backtrace_silencers.rb
+	 create mode 100644 userhub/config/initializers/filter_parameter_logging.rb
+	 create mode 100644 userhub/config/initializers/inflections.rb
+	 create mode 100644 userhub/config/initializers/mime_types.rb
+	 create mode 100644 userhub/config/initializers/secret_token.rb
+	 create mode 100644 userhub/config/initializers/session_store.rb
+	 create mode 100644 userhub/config/initializers/wrap_parameters.rb
+	 create mode 100644 userhub/config/locales/en.yml
+	 create mode 100644 userhub/config/routes.rb
+	 create mode 100644 userhub/db/seeds.rb
+	 create mode 100644 userhub/lib/assets/.keep
+	 create mode 100644 userhub/lib/tasks/.keep
+	 create mode 100644 userhub/log/.keep
+	 create mode 100644 userhub/public/404.html
+	 create mode 100644 userhub/public/422.html
+	 create mode 100644 userhub/public/500.html
+	 create mode 100644 userhub/public/favicon.ico
+	 create mode 100644 userhub/public/robots.txt
+	 create mode 100644 userhub/test/controllers/.keep
+	 create mode 100644 userhub/test/controllers/welcome_controller_test.rb
+	 create mode 100644 userhub/test/fixtures/.keep
+	 create mode 100644 userhub/test/helpers/.keep
+	 create mode 100644 userhub/test/helpers/welcome_helper_test.rb
+	 create mode 100644 userhub/test/integration/.keep
+	 create mode 100644 userhub/test/mailers/.keep
+	 create mode 100644 userhub/test/models/.keep
+	 create mode 100644 userhub/test/test_helper.rb
+	 create mode 100644 userhub/vendor/assets/javascripts/.keep
+	 create mode 100644 userhub/vendor/assets/stylesheets/.keep
+	limingth@gmail ~/Github/myRoR/userhub$ git push
+	Counting objects: 38, done.
+	Delta compression using up to 2 threads.
+	Compressing objects: 100% (33/33), done.
+	Writing objects: 100% (37/37), 11.85 KiB | 0 bytes/s, done.
+	Total 37 (delta 1), reused 0 (delta 0)
+	To git@github.com:limingth/myRoR.git
+	   c7439e2..acfc7d5  master -> master
+	limingth@gmail ~/Github/myRoR/userhub$ 
+	
 ## Step 3 - 
 
 
