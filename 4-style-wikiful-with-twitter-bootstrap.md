@@ -395,4 +395,35 @@
 
 * add 2 line, see them at line 5 and line 9
 
-###
+### git commit
+	limingth@gmail ~/Github/myRoR/wikiful$ git status
+	# On branch gh-pages
+	# Changes not staged for commit:
+	#   (use "git add <file>..." to update what will be committed)
+	#   (use "git checkout -- <file>..." to discard changes in working directory)
+	#
+	#	modified:   app/assets/stylesheets/bootstrap_and_overrides.css.less
+	#	modified:   app/controllers/application_controller.rb
+	#	modified:   app/views/layouts/application.html.erb
+	#
+	# Untracked files:
+	#   (use "git add <file>..." to include in what will be committed)
+	#
+	#	../4-style-wikiful-with-twitter-bootstrap.md
+	no changes added to commit (use "git add" and/or "git commit -a")
+	limingth@gmail ~/Github/myRoR/wikiful$ git add ../4-style-wikiful-with-twitter-bootstrap.md 
+	limingth@gmail ~/Github/myRoR/wikiful$ git commit -a -m "add sidebar and navbar"
+	[gh-pages cd2183e] add sidebar and navbar
+	 4 files changed, 445 insertions(+), 1 deletion(-)
+	 create mode 100644 4-style-wikiful-with-twitter-bootstrap.md
+	limingth@gmail ~/Github/myRoR/wikiful$ git push
+	Counting objects: 24, done.
+	Delta compression using up to 2 threads.
+	Compressing objects: 100% (12/12), done.
+	Writing objects: 100% (13/13), 5.43 KiB | 0 bytes/s, done.
+	Total 13 (delta 8), reused 0 (delta 0)
+	To git@github.com:limingth/myRoR.git
+	   355c21a..cd2183e  gh-pages -> gh-pages
+	limingth@gmail ~/Github/myRoR/wikiful$ 
+
+[!wikiful-with-navbar-sidebar](wikiful-with-navbar-sidebar.png)
