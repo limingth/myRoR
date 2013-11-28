@@ -564,13 +564,155 @@
 	   becc65b..3172af2  master -> master
 	limingth@gmail ~/Github/myRoR/wikiful$ 
 
+## Index and Show View for Categories
 
+### develop new feature on a new branch
+	limingth@gmail ~/Github/myRoR/wikiful$ git branch
+	* master
+	limingth@gmail ~/Github/myRoR/wikiful$ git checkout -b category_views
+	Switched to a new branch 'category_views'
+	limingth@gmail ~/Github/myRoR/wikiful$ git branch
+	* category_views
+	  master
+	limingth@gmail ~/Github/myRoR/wikiful$ ls
+	Gemfile		app		db		log		vendor
+	Gemfile.lock	bin		doc		public
+	README.rdoc	config		dvdrental.tar	test
+	Rakefile	config.ru	lib		tmp
+	limingth@gmail ~/Github/myRoR/wikiful$ 
 
+### add categories to route.rb
+	limingth@gmail ~/Github/myRoR/wikiful$ vi config/routes.rb 
+	  1 Wikiful::Application.routes.draw do
+	  2   get "welcome/index"
+	  3   # The priority is based upon order of creation: first created -> highest priority.
+	  4   # See how all your routes lay out with "rake routes".
+	  5 
+	  6   # You can have the root of your site routed with "root"
+	  7   root 'welcome#index'
+	  8   resources :articles
+	  9   resources :categories
+	 10   
 
+### create a CategoriesController
+	limingth@gmail ~/Github/myRoR/wikiful$ vi app/controllers/categories_controller.rb
+	  1 class CategoriesController < ApplicationController
+	  2   
+	  3   def index
+	  4     @categories = Category.all.order(:name)
+	  5   end
+	  6 
+	  7   def show
+	  8     @category = Category.find(params[:id])
+	  9   end
+	 10 
+	 11 end
 
+### generate an alphabetically sorted list of category names
+	limingth@gmail ~/Github/myRoR/wikiful$ mkdir app/views/categories
 
+	limingth@gmail ~/Github/myRoR/wikiful$ vi app/views/categories/index.html.erb
+	  1 <h1>Wikiful Categories</h1>
+	  2 <h3>Click on any link below to see articles tagged with the category</h3>
+	  3 <ul>
+	  4   <% @categories.each do |category| %>
+	  5     <h4>
+	  6       <%= link_to category.name, category %>
+	  7     </h4>
+	  8   <% end %>
+	  9 </ul>
+	~          
 
+	limingth@gmail ~/Github/myRoR/wikiful$ vi app/views/categories/show.html.erb
+	  1 <h1><%= @category.name %> Articles</h1>
+	  2 
+	  3 <h3>There are <%= @category.articles.count %> articles filed under <%= @category.name     %></h3>
+	  4 <ul> 
+	  5   <% @category.articles.order(:title).each do |article| %>
+	  6     <h4>
+	  7       <%= link_to article.title, article %>
+	  8     </h4>
+	  9   <% end %>
+	 10 </ul>
 
+### change view of articles
+	limingth@gmail ~/Github/myRoR/wikiful$ vi app/views/articles/index.html.erb 
+	  1 <h1> This is the index view for Articles </h1>
+	  2 
+	  3 <% @articles.each do |article| %>
+	  4   <div>
+	  5     <h3><%= link_to article.title, article %></h3>
+	  6         <p>Published on <%= article.created_at.strftime('%b %d, %Y') %></p>
+	  7     <p>Filed under: <% article.categories.each do |category| %>
+	  8                       <%= link_to category.name, category %>&nbsp;
+	  9                     <% end %>
+	 10     </p>
+	 11     <p><%= truncate(article.content, length: 200) %></p>
+	 12   </div>
+	 13 <% end %>
+	 14 
 
+	limingth@gmail ~/Github/myRoR/wikiful$ vi app/views/articles/show.html.erb 
+	  1 <h1>This is the index view for show Articles</h1>
+	  2 
+	  3 <div>
+	  4   <h1><%= @article.title %></h1>
+	  5   <p>Published <%= @article.created_at.strftime('%b %d, %Y') %></p>
+	  6   <p>Filed under: <% @article.categories.each do |category| %>
+	  7      <%= link_to category.name, category %>&nbsp;
+	  8   <% end %>
+	  9   </p>
+	 10   <div><%= @article.content %></div>
+	 11 </div>
 
+### test it in browser
+
+#### http://localhost:3000/articles
+
+	This is the index view for Articles
+
+	New Test
+
+	Published on Nov 27, 2013
+
+	Filed under: <Biology>  <Computer Science> 
+
+	This is a test for new method
+
+* you can see Biology and Computer Science are both underline with hyperlink
+
+#### http://localhost:3000/categories
+
+	Wikiful Categories
+
+	Click on any link below to see articles tagged with the category
+
+	<Biology>
+
+	<Biology>
+
+	<Biology>
+
+	<Chemistry>
+
+	...
+
+	<bbb>
+
+* you can see Biology and Chemistry and bbb are both underline with hyperlink
+
+### http://localhost:3000/categories/18
+	Biology Articles
+
+	There are 4 articles filed under Biology
+
+	<Beatae non nesciunt voluptas aut sed>
+
+	<New Test>
+
+	<Odio sunt voluptates voluptatem est asperiores dolor quo optio fugiat ducimus>
+
+	<Possimus consequatur animi aperiam provident in vel officiis>
+
+* you can see every article is underline with hyperlink
 

@@ -1,0 +1,9 @@
+<h1>Wikiful Categories</h1>
+<h3>Click on any link below to see articles tagged with the category</h3>
+<ul>
+  <% @categories.each do |category| %>
+    <h4>
+      <%= link_to category.name, category %>
+    </h4>
+  <% end %>
+</ul>
