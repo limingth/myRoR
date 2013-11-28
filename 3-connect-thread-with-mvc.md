@@ -825,3 +825,18 @@
 	Published Nov 27, 2013 | Filed under Biology, Computer Science
 	This is a test for new method
 	<Read more>
+
+### git commit
+	limingth@gmail ~/Github/myRoR/wikiful$ git add .
+	limingth@gmail ~/Github/myRoR/wikiful$ git commit -a -m "enhance welcome page"
+	[master 376fb03] enhance welcome page
+	 3 files changed, 126 insertions(+)
+	limingth@gmail ~/Github/myRoR/wikiful$ git push
+	Counting objects: 19, done.
+	Delta compression using up to 2 threads.
+	Compressing objects: 100% (9/9), done.
+	Writing objects: 100% (10/10), 2.28 KiB | 0 bytes/s, done.
+	Total 10 (delta 6), reused 0 (delta 0)
+	To git@github.com:limingth/myRoR.git
+	   1e1b83c..376fb03  master -> master
+	limingth@gmail ~/Github/myRoR/wikiful$ 
