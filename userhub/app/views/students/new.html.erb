@@ -1,23 +1,9 @@
-<h1>This is the new view for students</h1>
+<%- model_class = Student -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h1>
+</div>
+<p>Input your information:</p>
+<%= render :partial => 'form' %>
 
-<%= form_for @student do |f| %>
-  <div class="control-group">
-    <%= f.label :name %>
-    <div class="controls">
-      <%= f.text_field :name %>
-    </div>
-  </div>
+<p>Thanks</p>
 
-  <div class="control-group">
-    <%= f.label :email %>
-    <div class="controls">
-      <%= f.text_area :email, cols: "30" %>
-    </div>
-  </div>
-
-  <div class="form-actions">
-    <%= f.submit nil %>
-    <%= link_to 'Cancel', students_path %>
-  </div>
-
-<% end %>

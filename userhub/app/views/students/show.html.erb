@@ -1,9 +1,23 @@
-<h1>This is the show view for student</h1>
- 
-<div>
-  <h1><%= @student.name %></h1>
-  <h1><%= @student.email %></h1>
-  <p>Published <%= @student.created_at.strftime('%b %d, %Y') %></p>
-  <a href="/students">Back to students info page</a>
-  </p>
+<%- model_class = Student -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @student.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
+  <dd><%= @student.email %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              students_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_student_path(@student), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              student_path(@student),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
 </div>

@@ -8,7 +8,20 @@
 </head>
 <body>
 
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <%= link_to "UserHub", root_path, :class => "brand" %>
+      <div style="float: right;">View and sign up your email here</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+<div class="row">
+<div class="span9">
 <%= yield %>
+</div>
 
 </body>
 </html>

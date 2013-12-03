@@ -14,16 +14,24 @@ class StudentsController < ApplicationController
 
   def create
     @student = Student.new(student_params)
+
     if @student.save
-      redirect_to @student
+      redirect_to "/"
     else
       render "new"
     end
   end
 
+  def destroy
+    a = Student.find(params[:id])
+    if a.destroy
+      redirect_to "/students"
+    end
+  end
+
 private
   def student_params
-    params.require(:student).permit(:name, :email)
+    params.require(:student).permit(:name, :email, :major)
   end
 
 end

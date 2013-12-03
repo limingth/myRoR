@@ -1,7 +1,87 @@
-<h1>Welcome to UserHub</h1>
+<title>Welcome to UserHub</title>
 
-<a href="/students"><h2>View all students' info</h2></a>
+<%- model_class = Student -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %>
+  </h1>
+</div>
 
-<a href="/students/new"><h2>Sign Up my email</h2></a>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:email) %></th>
+      <th><%= model_class.human_attribute_name(:major) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <!-- 
+      <th><%=t '.actions', :default => t("helpers.actions") %></th> 
+      -->
+    </tr>
+  </thead>
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+	<td><%= link_to student.id, student_path(student) %></td>
+	<td><%= student.name %></td>
+	<td><%= "x" * student.email.split("@")[0].length %>@<%= student.email.split("@")[1] %></td>
+	<td><%= student.major %></td>
+	<td><%=l student.created_at %></td>
 
+	<!-- 
+	<td>
+	  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+		      edit_student_path(student), :class => 'btn btn-mini' %>
+	  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+		      student_path(student),
+		      :method => :delete,
+		      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+		      :class => 'btn btn-mini btn-danger' %>
+	</td>
+	-->
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p>Total: <%= @students.count %></p>
+</div>
+
+<div class="span3">
+<h2>Sign Up my email</h2>
+
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h1>
+</div>
+
+<%= form_for @student, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :email, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :email, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :major, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :major, :class => 'text_field' %>
+    </div>
+  </div>
+
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <!--
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+		students_path, :class => 'btn' %>
+    -->
+  </div>
+<% end %>
 

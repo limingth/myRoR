@@ -1,9 +1,41 @@
-<h1> This is the index view for students </h1>
+<%- model_class = Student -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <h2>Total: <%= @students.count %></h2>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:email) %></th>
+      <th><%= model_class.human_attribute_name(:major) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= link_to student.id, student_path(student) %></td>
+        <td><%= student.name %></td>
+        <td><%= student.email %></td>
+        <td><%= student.major %></td>
+        <td><%= student.created_at.strftime("%c") %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_student_path(student), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      student_path(student),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<% @students.each do |student| %>
-  <div>
-    <h3><%= student.name %></h3>
-      <p><%= student.email %></p>
-  </div>
-<% end %>
-
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_student_path,
+            :class => 'btn btn-primary' %>
