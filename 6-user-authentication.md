@@ -563,4 +563,49 @@
 * Now, when a new user is created, their ID will automatically be added to the session object.
 
 ### git commit
+	limingth@gmail ~/Github/myRoR/wikiful$ git status
+	# On branch master
+	# Changes not staged for commit:
+	#   (use "git add <file>..." to update what will be committed)
+	#   (use "git checkout -- <file>..." to discard changes in working directory)
+	#
+	#	modified:   ../6-user-authentication.md
+	#	modified:   app/controllers/application_controller.rb
+	#	modified:   app/controllers/articles_controller.rb
+	#	modified:   app/controllers/users_controller.rb
+	#	modified:   app/views/layouts/application.html.erb
+	#	modified:   config/routes.rb
+	#
+	# Untracked files:
+	#   (use "git add <file>..." to include in what will be committed)
+	#
+	#	app/assets/javascripts/sessions.js.coffee
+	#	app/assets/stylesheets/sessions.css.scss
+	#	app/controllers/sessions_controller.rb
+	#	app/helpers/sessions_helper.rb
+	#	app/views/sessions/
+	#	test/controllers/sessions_controller_test.rb
+	#	test/helpers/sessions_helper_test.rb
+	no changes added to commit (use "git add" and/or "git commit -a")
+	limingth@gmail ~/Github/myRoR/wikiful$ git add .
+	limingth@gmail ~/Github/myRoR/wikiful$ git commit -a -m "add login logout function"
+	[master 1e6aa9d] add login logout function
+	 13 files changed, 357 insertions(+), 4 deletions(-)
+	 create mode 100644 wikiful/app/assets/javascripts/sessions.js.coffee
+	 create mode 100644 wikiful/app/assets/stylesheets/sessions.css.scss
+	 create mode 100644 wikiful/app/controllers/sessions_controller.rb
+	 create mode 100644 wikiful/app/helpers/sessions_helper.rb
+	 create mode 100644 wikiful/app/views/sessions/new.html.erb
+	 create mode 100644 wikiful/test/controllers/sessions_controller_test.rb
+	 create mode 100644 wikiful/test/helpers/sessions_helper_test.rb
+	limingth@gmail ~/Github/myRoR/wikiful$ git push
+	Counting objects: 47, done.
+	Delta compression using up to 2 threads.
+	Compressing objects: 100% (25/25), done.
+	Writing objects: 100% (28/28), 8.48 KiB | 0 bytes/s, done.
+	Total 28 (delta 13), reused 0 (delta 0)
+	To git@github.com:limingth/myRoR.git
+	   9242cee..1e6aa9d  master -> master
+	limingth@gmail ~/Github/myRoR/wikiful$ 
+
 
