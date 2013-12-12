@@ -269,7 +269,8 @@ When you’re building out features for your app, much of the work will take pla
 
 * Builders: This directory contains custom form builders
 	- just have one -- InlineErrorsBuilder
-	- 
+
+
 
 #### hands-on
 	limingth@gmail ~/Github/myRoR/twetter$ open app/assets/images/twetter-logo.png 
