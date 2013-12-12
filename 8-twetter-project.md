@@ -204,11 +204,128 @@
 
 ![a message flashes](twetter-follow.png)
 
+### Do yourself
+* Try to dismiss flashed messages by clicking the “Dismiss message” link in the rightside of navbar.
 
 
+## Get to Know the Twetter Code Base
 
+### Get a Quick Overview of Your Routes
+	limingth@gmail ~/Github/myRoR$ cd twetter
+	RVM used your Gemfile for selecting Ruby, it is all fine - Heroku does that too,
+	you can ignore these warnings with 'rvm rvmrc warning ignore /Users/limingth/Github/myRoR/twetter/Gemfile'.
+	To ignore the warning for all files run 'rvm rvmrc warning ignore allGemfiles'.
 
+	limingth@gmail ~/Github/myRoR/twetter$ rake routes
+	                  Prefix Verb   URI Pattern                    Controller#Action
+	        new_user_session GET    /users/sign_in(.:format)       devise/sessions#new
+	            user_session POST   /users/sign_in(.:format)       devise/sessions#create
+	    destroy_user_session DELETE /users/sign_out(.:format)      devise/sessions#destroy
+	           user_password POST   /users/password(.:format)      devise/passwords#create
+	       new_user_password GET    /users/password/new(.:format)  devise/passwords#new
+	      edit_user_password GET    /users/password/edit(.:format) devise/passwords#edit
+	                         PATCH  /users/password(.:format)      devise/passwords#update
+	                         PUT    /users/password(.:format)      devise/passwords#update
+	cancel_user_registration GET    /users/cancel(.:format)        devise/registrations#cancel
+	       user_registration POST   /users(.:format)               devise/registrations#create
+	   new_user_registration GET    /users/sign_up(.:format)       devise/registrations#new
+	  edit_user_registration GET    /users/edit(.:format)          devise/registrations#edit
+	                         PATCH  /users(.:format)               devise/registrations#update
+	                         PUT    /users(.:format)               devise/registrations#update
+	                         DELETE /users(.:format)               devise/registrations#destroy
+	             user_unlock POST   /users/unlock(.:format)        devise/unlocks#create
+	         new_user_unlock GET    /users/unlock/new(.:format)    devise/unlocks#new
+	                         GET    /users/unlock(.:format)        devise/unlocks#show
+	                 follows GET    /follows(.:format)             follows#index
+	                         POST   /follows(.:format)             follows#create
+	                  follow DELETE /follows/:id(.:format)         follows#destroy
+	                   twets GET    /twets(.:format)               twets#index
+	                         POST   /twets(.:format)               twets#create
+	                    twet DELETE /twets/:id(.:format)           twets#destroy
+	               user_root GET    /                              follows#index
+	                    root GET    /                              home#index
+	limingth@gmail ~/Github/myRoR/twetter$ 
 
+#### Look at the 3rd from the bottom row. 
+
+	twets GET    /twets(.:format)              twets#index
+
+* The url prefix for this view is “twets”. When this endpoint is accessed with the GET method, it returns the index action on our twets controller (twetter/app/controllers/twets_controllers).
+
+### Take a Guided Tour
+* Make sure to pay special attention to the following items below: 
+	- controllers, 
+	- models, 
+	- views, 
+	- and config/routes.rb.
+
+#### The App Folder
+When you’re building out features for your app, much of the work will take place in the apps folder.
+
+* Assets: This folder houses static files your app requires
+	- images, 
+	- javascript (find several auto-generated files)
+	- and stylesheets (see style.css file)
+
+* Builders: This directory contains custom form builders
+	- just have one -- InlineErrorsBuilder
+	- 
+
+#### hands-on
+	limingth@gmail ~/Github/myRoR/twetter$ open app/assets/images/twetter-logo.png 
+
+	limingth@gmail ~/Github/myRoR/twetter$ ls app/assets/javascripts/
+	application.js		follows.js.coffee	home.js.coffee		twets.js.coffee
+
+	limingth@gmail ~/Github/myRoR/twetter$ more app/assets/stylesheets/style.css 
+	body {
+	  background-attachment: scroll;
+	  background-clip: border-box;
+	  background-color: rgba(0, 0, 0, 0);
+	  background-image: -webkit-radial-gradient(center, circle cover, rgb(148, 210, 248), rgb(58, 146, 200));
+	  background-origin: padding-box;
+	  background-size: auto;
+	  color: rgb(51, 51, 51);
+	 ...
+
+	limingth@gmail ~/Github/myRoR/twetter$ ls app/builders/
+	inline_errors_builder.rb
+	limingth@gmail ~/Github/myRoR/twetter$ 
+
+	limingth@gmail ~/Github/myRoR/twetter$ cat app/builders/inline_errors_builder.rb 
+	# more info: http://api.rubyonrails.org/classes/ActionView/Helpers/FormBuilder.html
+	#
+	# This class inherits from the default FormBuilder class and adds two public methods
+	# for displaying errors related to specific fields.
+	#
+	class InlineErrorsBuilder < ActionView::Helpers::FormBuilder
+
+	  # Generates HTML for displaying errors related to the attribute passed as 'meth'
+	  #
+	  def errors_for(meth, options = {})
+	    @template.content_tag :p, @object.errors[meth].join('<br>').html_safe, :class => 'help-block' if has_errors?(meth)
+	  end
+
+	  # Adds the 'has-error' class to the list of other classes passed if there are
+	  # errors on the attribute passed as 'meth'
+	  #
+	  def validation_class(meth, *klasses)
+	    klasses << 'has-error' if has_errors?(meth)
+	    klasses.compact.join(' ').html_safe
+	  end
+
+	  private
+
+	  # Determines if there are errors on the attribute passed as 'meth'. Includes protection
+	  # against edge cases where there is no object present.
+	  #
+	  def has_errors?(meth)
+	    @object.present? ? @object.errors[meth].present? : false
+	  end
+	end
+	limingth@gmail ~/Github/myRoR/twetter$ 
+
+### 
 
 
 
