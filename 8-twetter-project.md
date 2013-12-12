@@ -200,6 +200,10 @@
 ![your account page after sign-up](twetter-account.png)
 
 
+* if you follow other users, there’s a message that flashes in the center of the navbar.
+
+![a message flashes](twetter-follow.png)
+
 
 
 
