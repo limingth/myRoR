@@ -197,7 +197,7 @@
 
 * after you sign up your account, you can see this page
 
-![sign-in page after sign-up](twetter-signin.png)
+![your account page after sign-up](twetter-account.png)
 
 
 
