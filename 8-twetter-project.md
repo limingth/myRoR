@@ -411,6 +411,49 @@ When you’re building out features for your app, much of the work will take pla
 	* myProfileBranch
 	limingth@gmail ~/Github/myRoR/twetter$ 
 
+## That is all we can get from the hint of curriculum, next is my step to do the rest
+
+### see what current branch looks like 
+	limingth@gmail ~/Github/twetter-profile/twetter$ bundle exec rails s
+	=> Booting WEBrick
+	=> Rails 4.0.0 application starting in development on http://0.0.0.0:3000
+	=> Run `rails server -h` for more startup options
+	=> Ctrl-C to shutdown server
+	[2013-12-14 10:59:10] INFO  WEBrick 1.3.1
+	[2013-12-14 10:59:10] INFO  ruby 2.0.0 (2013-06-27) [x86_64-darwin12.4.0]
+	[2013-12-14 10:59:10] INFO  WEBrick::HTTPServer#start: pid=2452 port=3000
+
+#### open browser http://localhost:3000/
+* sign up with your email and password
+* see the index page of current user like limingth
+* try to post a twet at the box of "Compose the new Twet..."
+* see there are No link with @limingth
+* see A error message when you try to browser http://localhost:3000/limingth
+	- Routing Error
+	- No route matches [GET] "/limingth"
+
+### see what target branch looks like
+
+#### check out the profile branch, this is the goal. 
+	limingth@gmail ~/Github/twetter-profile/twetter$ git checkout profile
+	Switched to branch 'profile'
+
+#### view the webpage to see it looks like
+	limingth@gmail ~/Github/twetter-profile/twetter$ bundle exec rails s
+	=> Booting WEBrick
+	=> Rails 4.0.0 application starting in development on http://0.0.0.0:3000
+	=> Run `rails server -h` for more startup options
+	=> Ctrl-C to shutdown server
+	[2013-12-14 10:59:10] INFO  WEBrick 1.3.1
+	[2013-12-14 10:59:10] INFO  ruby 2.0.0 (2013-06-27) [x86_64-darwin12.4.0]
+	[2013-12-14 10:59:10] INFO  WEBrick::HTTPServer#start: pid=2452 port=3000
+
+#### open browser http://localhost:3000/
+* see the index page of current user like limingth
+* see there is a linke with @limingth
+* see when you click the @limingth, there is no Error message 
+* see the homepage for limingth at http://localhost:3000/limingth without routing error
+
 ### compare the diff between 2 branches
 	limingth@gmail ~/Github/myRoR/twetter$ git diff myProfileBranch origin/profile 
 	diff --git a/app/controllers/follows_controller.rb b/app/controllers/follows_controller.rb
@@ -661,6 +704,25 @@ When you’re building out features for your app, much of the work will take pla
 
 ### write code that converts @username mentions into links to user profile pages
 
+### Step 0 - make sure you are in your own myProfileBranch
+	limingth@gmail ~/Github/twetter$ git branch
+	  master
+	* myProfileBranch
+	limingth@gmail ~/Github/twetter$ 
+
+* make sure that you get the routing Error message when you browser http://localhost:3000/limingth
+
+#### If you want to see all 100 twets now, you can do this
+	limingth@gmail ~/Github/twetter$ vi app/controllers/twets_controller.rb 
+	 42   # Sets the @twets instance variable to all twets viewable by the current user
+	 43   def get_twets
+	 44 #   @twets = current_user.all_twets
+	 45     @twets = Twet.all
+	 46 #   @twets = Twet.by_user_ids(1)
+	 47   end
+
+* see http://localhost:3000/twets, there are all 100 twets visible now
+
 ### Step 1 - write routes
 	limingth@gmail ~/Github/myRoR/twetter$ vi config/routes.rb 
 	  1 Twetter::Application.routes.draw do
@@ -670,26 +732,80 @@ When you’re building out features for your app, much of the work will take pla
 	  5 
 	  6   authenticated :user do
 	  7     resources :follows, :except => [:new, :edit, :show, :update]
-	  8     resources :twets, :except => [:new, :edit, :show, :update]		<--- add this line to routes
-	  9     get ':username', :to => 'twets#index', :as => :profile
+	  8     resources :twets, :except => [:new, :edit, :show, :update]		
+	  9     get ':username', :to => 'twets#index', :as => :profile         # add this line to routes
 	 10     root :to => 'follows#index', :as => :user_root
 	 11   end
 
-### Step 2 - write views
-	limingth@gmail ~/Github/myRoR/twetter$ vi app/views/twets/index.html.erb 
+* save the routes.rb file and restart the rails server 
+* See http://localhost:3000/limingth works !
+* check @limingth is still plain text without a link
 
-	  1 <div class="clearfix top-space small"></div>
-	  2 <div class="row">
-	  3 
-	  4   <%= render :partial => 'shared/left_nav' %>
-	  5 
-	  6   <div class="panel panel-default col-md-8 text-left">
+* see rails server log 
+	- Rendered twets/index.html.erb within layouts/application (12.1ms)
+* so it is the view file twets/index.html.erb we must change to make @limingth a link
+
+### Step 2 - add link to the left side @limingth
+	limingth@gmail ~/Github/twetter$ vi app/views/shared/_left_nav.html.erb 
+	  1 <div class="col-md-4">
+	  2   <ul class="nav nav-pills nav-stacked well text-left">
+	  3     <li>
+	  4       <%= content_tag :strong, current_user.name %>
+	  5     </li>
+	  6     <li>
+	  7       <a href="/<%= current_user.username %>"><%= content_tag :small, '@'+current_user.username %></a>
+	  8     </li>
+
+* see left side Li Ming @limingth is a link now
+
+### Step 3 - add link to the right side @limingth
+	limingth@gmail ~/Github/twetter$ vi app/views/twets/index.html.erb 
+	 14       <% @twets.each do |twet| -%>
+	 15       <li>
+	 16         <%= content_tag :strong, twet.user.name, :class => 'pull-left text-middle' %>
+	 17         <a href="<%= twet.user.username %>" color='blue'><%= content_tag :small, "@"+twet.user.username, :class => 'text-muted pad-10 text-mi    ddle' %></a>
+	 18         <%= content_tag :small, twet.created_at.strftime("%b %-d"), :class => 'text-muted text-middle pull-right' %>
+	 19         <div class="clearfix"></div>
+	 20         <%= content_tag :p, twet.content %>
+	 21       </li>
+	 22       <li><hr></li>
+	 23       <% end -%>
+
+* see right side Li Ming @limingth is a link now
+
+### Step 4 - change view for every user http://localhost:3000/Delia
+	limingth@gmail ~/Github/twetter$ vi app/controllers/twets_controller.rb 
+	 43   def get_twets
+	 44 #   @twets = current_user.all_twets
+	 45     if params[:username]
+	 46       @user = User.where(:username => params[:username]).first
+	 47       @twets = Twet.by_user_ids(@user.id) if @user
+	 48     else
+	 49       @twets = current_user.all_twets
+	 50     end
+	 51   end
+
+### Step 5 - change view for follow page
+	limingth@gmail ~/Github/twetter$ vi app/views/follows/index.html.erb 
+	 14       <% @users.each do |user| -%>
+	 15       <li>
+	 16         <%= content_tag :strong, user.name, :class => 'pull-left text-middle' %>
+	 17         <a href="<%= user.username %>"><%= content_tag :span, "@"+user.username, :class => 'text-muted pad-10 text-middle' %></a>
+	 18         <%= follow_link(user) %>
+	 19         <div class="clearfix"></div>
+	 20       </li>
+	 21       <li><hr></li>
+	 22       <% end -%>
+
+### Step 6 - change view for everyone 
+	limingth@gmail ~/Github/twetter$ vi app/views/twets/index.html.erb 
 	  7     <div class="pull-left">
 	  8       <h4>Twets</h4>
-	  9     </div>
-	 10     <%= follow_link(@user, profile_path(:username => @user.username)) if @user and @user.id != current_user.id %>			<--- add this line 
-	 11     <div class="clearfix"></div>
-	 12     <hr />
+	  9       <%= @twets[0].user.username %> has post <%= @twets.count -%> twets.
+	 10     </div>
+
+* now you can see at the top of right side
+	- Maye has post 5 twets.
 
 
 
