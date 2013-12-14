@@ -805,7 +805,7 @@ When you’re building out features for your app, much of the work will take pla
 	 10     </div>
 
 * now you can see at the top of right side
-	- Maye has post 5 twets.
+	- Delia has post 5 twets.
 
 ![twetter-homework-1](twetter-homework-1.png)
 
