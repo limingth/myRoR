@@ -813,12 +813,21 @@ When you’re building out features for your app, much of the work will take pla
 
 ### Step 7 - change view in twet's content
 	limingth@gmail ~/Github/twetter$ vi app/views/twets/index.html.erb 
+	 14       <% @twets.each do |twet| -%>
+	 15       <li>
+	 16         <%= content_tag :strong, twet.user.name, :class => 'pull-left text-middle' %>
+	 17         <a href="<%= twet.user.username %>" color='blue'><%= content_tag :small, "@"+twet.user.username, :class => 'text-muted pad-10 text-mi    ddle' %></a>
+	 18         <%= content_tag :small, twet.created_at.strftime("%b %-d"), :class => 'text-muted text-middle pull-right' %>
+	 19         <div class="clearfix"></div>
 	 20         <%= content_tag :p, twet.content.gsub(/@(?<username>(\w+))/, '<a href="'+'\k<username>'+'">@\k<username></a>').html_safe %>
 	 21         <!---
 	 22         <%= content_tag :p, twet.content %>
 	 23         <%= content_tag :p, twet.content.gsub(/@(?<username>(\w+))/, '@\k<username>') %>
 	 24         <%= content_tag :p, twet.content.gsub(/@(?<username>(\w+))/, '<a href="/\k<username>">@\k<username></a>').html_safe %>
 	 25         !--->
+	 26       </li>
+	 27       <li><hr></li>
+	 28       <% end -%>
 
 * you can see that @user in the content is a link now
 ![twetter-homework-2](twetter-homework-2.png)
