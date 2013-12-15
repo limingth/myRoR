@@ -180,6 +180,21 @@
 	limingth@gmail ~/Github/myRoR/twetter$ bundle exec rake seed:twets
 	limingth@gmail ~/Github/myRoR/twetter$ 
 
+#### Here You can use rails c to check it
+	limingth@gmail~/Github/twetter$ rails c
+	Loading development environment (Rails 4.0.0)
+	2.0.0p247 :005 > User.count
+	   (0.9ms)  SELECT COUNT(*) FROM "users"
+	 => 20 
+	2.0.0p247 :006 > Twet
+	 => Twet(id: integer, user_id: integer, content: string, created_at: datetime, updated_at: datetime) 
+	2.0.0p247 :007 > Twet.count
+	   (0.4ms)  SELECT COUNT(*) FROM "twets"
+	 => 100 
+	2.0.0p247 :008 > 
+
+* see there are 20 user in database and everyone has 5 twets (20*5=100 twets in total)
+
 ### Start the Server
 	limingth@gmail ~/Github/myRoR/twetter$ bundle exec rails s
 	=> Booting WEBrick
