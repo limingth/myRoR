@@ -871,7 +871,7 @@ When you’re building out features for your app, much of the work will take pla
 
 ## Second Feature: retwet
 
-### get a basic idear of what retwet looks like 
+### get a basic idea of what retwet looks like 
 	limingth@gmail ~/Github/twetter$ git branch
 	* master
 	  myProfileBranch
@@ -912,3 +912,7 @@ When you’re building out features for your app, much of the work will take pla
 	[2013-12-14 20:09:32] INFO  WEBrick::HTTPServer#start: pid=3983 port=3000
 
 ![twetter-retwet-looks-like](twetter-retwet-looks-like.png)
+
+### sign up another user like @test, follow user limingth, then you see his retwets
+![twetter-retwet-show](twetter-retwet-show.png)
+
