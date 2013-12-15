@@ -717,7 +717,7 @@ When you’re building out features for your app, much of the work will take pla
 	+
 	limingth@gmail ~/Github/myRoR/twetter$ 
 
-### write code that converts @username mentions into links to user profile pages
+## First Feature: write code that converts @username mentions into links to user profile pages
 
 ### Step 0 - make sure you are in your own myProfileBranch
 	limingth@gmail ~/Github/twetter$ git branch
@@ -846,6 +846,27 @@ When you’re building out features for your app, much of the work will take pla
 
 * you can see that @user in the content is a link now
 ![twetter-homework-2](twetter-homework-2.png)
+
+### Step 8 - merge the new code to master branch
+	limingth@gmail ~/Github/twetter$ git checkout master
+	Switched to branch 'master'
+	limingth@gmail ~/Github/twetter$ git merge myProfileBranch
+	Updating 6b0da99..4075cb9
+	Fast-forward
+	 app/controllers/twets_controller.rb | 8 +++++++-
+	 app/views/follows/index.html.erb    | 2 +-
+	 app/views/shared/_left_nav.html.erb | 2 +-
+	 app/views/twets/index.html.erb      | 8 +++++++-
+	 config/application.rb               | 4 ++++
+	 config/routes.rb                    | 1 +
+	 6 files changed, 21 insertions(+), 4 deletions(-)
+	limingth@gmail ~/Github/twetter$ git push
+	Total 0 (delta 0), reused 0 (delta 0)
+	To git@github.com:limingth/twetter.git
+	   6b0da99..4075cb9  master -> master
+	limingth@gmail ~/Github/twetter$ 
+
+### First feature Done!
 
 
 
