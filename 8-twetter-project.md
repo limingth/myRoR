@@ -807,9 +807,21 @@ When you’re building out features for your app, much of the work will take pla
 * now you can see at the top of right side
 	- Delia has post 5 twets.
 
+* you can see that @user in the banner is a link now
+
 ![twetter-homework-1](twetter-homework-1.png)
 
+### Step 7 - change view in twet's content
+	limingth@gmail ~/Github/twetter$ vi app/views/twets/index.html.erb 
+	 20         <%= content_tag :p, twet.content.gsub(/@(?<username>(\w+))/, '<a href="'+'\k<username>'+'">@\k<username></a>').html_safe %>
+	 21         <!---
+	 22         <%= content_tag :p, twet.content %>
+	 23         <%= content_tag :p, twet.content.gsub(/@(?<username>(\w+))/, '@\k<username>') %>
+	 24         <%= content_tag :p, twet.content.gsub(/@(?<username>(\w+))/, '<a href="/\k<username>">@\k<username></a>').html_safe %>
+	 25         !--->
 
+* you can see that @user in the content is a link now
+![twetter-homework-2](twetter-homework-2.png)
 
 
 
