@@ -54,4 +54,31 @@
 	Switched to a new branch 'myRetwet'
 	limingth@gmail ~/Github/twetter$ 
 
-### Step 1 - 
+### Step 1 - add Retwet button to every twet 
+	limingth@gmail ~/Github/twetter$ vi app/views/twets/index.html.erb 
+	 14       <% @twets.each do |twet| -%>
+	 15       <li>
+	 16         <%= content_tag :strong, twet.user.name, :class => 'pull-left text-middle' %>
+	 17         <a href="<%= twet.user.username %>" color='blue'><%= content_tag :small, "@"+twet.user.username, :class => 'text-muted pad-10 text-mi    ddle' %></a>
+	 18         <%= content_tag :small, twet.created_at.strftime("%b %-d"), :class => 'text-muted text-middle pull-right' %>
+	 19         <div class="clearfix"></div>
+	 20         <%= content_tag :p, twet.content.gsub(/@(?<username>(\w+))/, '<a href="'+'\k<username>'+'">@\k<username></a>').html_safe %>
+	 21         
+	 22         <div class="clearfix"></div>
+	 23           <%= content_tag :div, :class => 'pull-right' do %>
+	 24             <%= form_for :retwet, :url => 'retwets_path', 
+	 25                                    :method => 'POST',
+	 26                                    :role => :form do |f| %>
+	 27               <%= hidden_field_tag :return_to, request.original_url %>
+	 28               <%= f.hidden_field :twet_id, :value => twet.id.to_s %>
+	 29               <span class="glyphicon glyphicon-retweet smaller text-primary"></span>
+	 30               <%= f.submit "Retwet".html_safe, :class => 'btn btn-link smaller' %>
+	 31             <% end %>
+	 32           <% end %>
+	 33         <div class="clearfix"></div>
+	 34         
+	 35       </li>
+	 36       <li><hr></li>
+	 37       <% end -%>
+
+![twetter-retwet-add-button](twetter-retwet-add-button.png)
