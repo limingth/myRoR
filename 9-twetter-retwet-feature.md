@@ -332,6 +332,7 @@
 	 33         <div class="clearfix"></div>
 
 ### Step 12 - add can_retwet method to module TwetsHelper
+	limingth@gmail ~/Github/twetter$ vi app/helpers/twets_helper.rb 
 	module TwetsHelper
 
 	  # Returns true / false indicating whether the twet passed can be
@@ -365,4 +366,116 @@
 * Now the retwet feature is perfect
 
 ![twetter-retwet-perfect](twetter-retwet-perfect.png)
+
+### Step 13 - git commit and git merge
+	limingth@gmail ~/Github/twetter$ git status
+	# On branch myRetwet
+	# Changes not staged for commit:
+	#   (use "git add <file>..." to update what will be committed)
+	#   (use "git checkout -- <file>..." to discard changes in working directory)
+	#
+	#	modified:   app/helpers/twets_helper.rb
+	#	modified:   app/models/twet.rb
+	#	modified:   app/models/user.rb
+	#	modified:   app/views/twets/index.html.erb
+	#	modified:   config/routes.rb
+	#	modified:   db/schema.rb
+	#
+	# Untracked files:
+	#   (use "git add <file>..." to include in what will be committed)
+	#
+	#	app/assets/javascripts/retwets.js.coffee
+	#	app/assets/stylesheets/retwets.css.scss
+	#	app/controllers/retwets_controller.rb
+	#	app/helpers/retwets_helper.rb
+	#	app/models/retweets.rb
+	#	app/models/retwet.rb
+	#	db/migrate/20131215071059_create_retweets.rb
+	#	lib/mention_linker.rb
+	#	spec/controllers/retwets_controller_spec.rb
+	#	spec/factories/retweets.rb
+	#	spec/factories/retwets.rb
+	#	spec/helpers/retwets_helper_spec.rb
+	#	spec/models/retweets_spec.rb
+	#	spec/models/retwet_spec.rb
+	no changes added to commit (use "git add" and/or "git commit -a")
+	limingth@gmail ~/Github/twetter$ git add .
+	limingth@gmail ~/Github/twetter$ git commit -a -m "add retwet feature"
+	[myRetwet c91cfad] add retwet feature
+	 20 files changed, 270 insertions(+), 10 deletions(-)
+	 create mode 100644 app/assets/javascripts/retwets.js.coffee
+	 create mode 100644 app/assets/stylesheets/retwets.css.scss
+	 create mode 100644 app/controllers/retwets_controller.rb
+	 create mode 100644 app/helpers/retwets_helper.rb
+	 create mode 100644 app/models/retweets.rb
+	 create mode 100644 app/models/retwet.rb
+	 create mode 100644 db/migrate/20131215071059_create_retweets.rb
+	 create mode 100644 lib/mention_linker.rb
+	 create mode 100644 spec/controllers/retwets_controller_spec.rb
+	 create mode 100644 spec/factories/retweets.rb
+	 create mode 100644 spec/factories/retwets.rb
+	 create mode 100644 spec/helpers/retwets_helper_spec.rb
+	 create mode 100644 spec/models/retweets_spec.rb
+	 create mode 100644 spec/models/retwet_spec.rb
+	limingth@gmail ~/Github/twetter$ git push
+	fatal: The current branch myRetwet has no upstream branch.
+	To push the current branch and set the remote as upstream, use
+
+	    git push --set-upstream origin myRetwet
+
+	limingth@gmail ~/Github/twetter$ git push --set-upstream origin myRetwet
+	Counting objects: 64, done.
+	Delta compression using up to 2 threads.
+	Compressing objects: 100% (34/34), done.
+	Writing objects: 100% (39/39), 6.83 KiB | 0 bytes/s, done.
+	Total 39 (delta 15), reused 4 (delta 2)
+	To git@github.com:limingth/twetter.git
+	 * [new branch]      myRetwet -> myRetwet
+	Branch myRetwet set up to track remote branch myRetwet from origin.
+	limingth@gmail ~/Github/twetter$ git checkout master
+	Switched to branch 'master'
+	limingth@gmail ~/Github/twetter$ git merge myRetwet
+	Updating 4075cb9..c91cfad
+	Fast-forward
+	 app/assets/javascripts/retwets.js.coffee     |  3 +++
+	 app/assets/stylesheets/retwets.css.scss      |  3 +++
+	 app/controllers/retwets_controller.rb        | 66 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 app/helpers/retwets_helper.rb                |  2 ++
+	 app/helpers/twets_helper.rb                  | 27 +++++++++++++++++++++++++++
+	 app/models/retweets.rb                       |  2 ++
+	 app/models/retwet.rb                         |  7 +++++++
+	 app/models/twet.rb                           | 16 +++++++++++++---
+	 app/models/user.rb                           |  1 +
+	 app/views/twets/index.html.erb               | 32 +++++++++++++++++++++++++++-----
+	 config/routes.rb                             |  3 ++-
+	 db/migrate/20131215071059_create_retweets.rb | 10 ++++++++++
+	 db/schema.rb                                 | 18 +++++++++++++++++-
+	 lib/mention_linker.rb                        | 44 ++++++++++++++++++++++++++++++++++++++++++++
+	 spec/controllers/retwets_controller_spec.rb  |  5 +++++
+	 spec/factories/retweets.rb                   |  8 ++++++++
+	 spec/factories/retwets.rb                    |  8 ++++++++
+	 spec/helpers/retwets_helper_spec.rb          | 15 +++++++++++++++
+	 spec/models/retweets_spec.rb                 |  5 +++++
+	 spec/models/retwet_spec.rb                   |  5 +++++
+	 20 files changed, 270 insertions(+), 10 deletions(-)
+	 create mode 100644 app/assets/javascripts/retwets.js.coffee
+	 create mode 100644 app/assets/stylesheets/retwets.css.scss
+	 create mode 100644 app/controllers/retwets_controller.rb
+	 create mode 100644 app/helpers/retwets_helper.rb
+	 create mode 100644 app/models/retweets.rb
+	 create mode 100644 app/models/retwet.rb
+	 create mode 100644 db/migrate/20131215071059_create_retweets.rb
+	 create mode 100644 lib/mention_linker.rb
+	 create mode 100644 spec/controllers/retwets_controller_spec.rb
+	 create mode 100644 spec/factories/retweets.rb
+	 create mode 100644 spec/factories/retwets.rb
+	 create mode 100644 spec/helpers/retwets_helper_spec.rb
+	 create mode 100644 spec/models/retweets_spec.rb
+	 create mode 100644 spec/models/retwet_spec.rb
+	limingth@gmail ~/Github/twetter$ git push
+	Total 0 (delta 0), reused 0 (delta 0)
+	To git@github.com:limingth/twetter.git
+	   4075cb9..c91cfad  master -> master
+	limingth@gmail ~/Github/twetter$ 
+
 
