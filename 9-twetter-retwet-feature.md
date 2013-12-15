@@ -244,7 +244,7 @@
 	  6   validates :user, :presence => true
 	  7 end
 
-### Step 10 - Modify modle Twet
+### Step 10 - Modify model Twet
 	limingth@gmail ~/Github/twetter$ vi app/models/twet.rb 
 	class Twet < ActiveRecord::Base
 	  belongs_to :user
