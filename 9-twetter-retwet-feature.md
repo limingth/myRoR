@@ -269,7 +269,7 @@
 	  end 
 	end
 
-#### old version of class Twet
+#### compared to old version of class Twet
 	class Twet < ActiveRecord::Base
 	  belongs_to :user
 
@@ -287,7 +287,7 @@
 * Now the retwet feature is almost finished
 ![twetter-retwet-ok](twetter-retwet-ok.png)
 
-### one's own twet can not be retwetted
+### Step 11 - one's own twet can not be retwetted
 	limingth@gmail ~/Github/twetter$ vi app/views/twets/index.html.erb 
 	 21 
 	 22        <div class="clearfix"></div>
@@ -331,7 +331,7 @@
 	 32           <% end %>
 	 33         <div class="clearfix"></div>
 
-### add can_retwet method to module TwetsHelper
+### Step 12 - add can_retwet method to module TwetsHelper
 	module TwetsHelper
 
 	  # Returns true / false indicating whether the twet passed can be
