@@ -868,6 +868,6 @@ When you’re building out features for your app, much of the work will take pla
 
 ### First feature Done!
 
-* see 9-twetter-retwet-feature.md for the Second feature
+* see [9-twetter-retwet-feature.md](9-twetter-retwet-feature.md) for the Second feature
 
 
