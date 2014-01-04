@@ -1,4 +1,3 @@
-
 # Models and Data Persistence in Rails
 
 ## Install PostgresSQL
@@ -156,6 +155,11 @@ http://www.postgresqltutorial.com/?wpdmact=process&did=MS5ob3RsaW5r
 * See it works! 
 
 ***Thanks [Ben White](https://plus.google.com/u/0/117357428990916642118) :-)***
+
+* drop db
+	
+		limingth@gmail ~/Github/sharedin.us$ dropdb dvdrental
+		limingth@gmail ~/Github/sharedin.us$ 
 
 ## The ActiveRecord ORM and Models in Rails
 
