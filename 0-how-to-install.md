@@ -1,16 +1,18 @@
 # How To Install
 
 ## Show Hidden Files on your Mac
+execute this command in your terminal
 
     defaults write com.apple.finder AppleShowAllFiles TRUE
    
-* refer to: <http://osxdaily.com/2009/02/25/show-hidden-files-in-os-x/>
+* refer to: http://osxdaily.com/2009/02/25/show-hidden-files-in-os-x/
 
 ## How to `subl test.txt` in your command line﻿
+add this line to the end of ~/.bash_profile 
 
     export PATH="/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/":$PATH
 
-* add this line to the end of ~/.bash_profile 
+* refer to: https://gist.github.com/olivierlacan/1195304
     
 ## Install RVM
 
