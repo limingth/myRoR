@@ -6,6 +6,12 @@
    
 * refer to: <http://osxdaily.com/2009/02/25/show-hidden-files-in-os-x/>
 
+## How to `subl test.txt` in your command line﻿
+
+    export PATH="/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/":$PATH
+
+* add this line to the end of ~/.bash_profile 
+    
 ## Install RVM
 
 ### Check Version
