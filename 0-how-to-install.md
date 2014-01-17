@@ -1,5 +1,11 @@
 # How To Install
 
+## Show Hidden Files on your Mac
+
+    defaults write com.apple.finder AppleShowAllFiles TRUE
+   
+* refer to: <http://osxdaily.com/2009/02/25/show-hidden-files-in-os-x/>
+
 ## Install RVM
 
 ### Check Version
@@ -783,3 +789,4 @@ limingth@gmail ~$
      = 1.9.1 : gem install rdoc-data; rdoc-data --install
     >= 1.9.2 : nothing to do! Yay!
     limingth@gmail ~/Github/myRoR/wikiful$ 
+    
