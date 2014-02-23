@@ -370,7 +370,7 @@
 	/usr/bin/createuser
 	limingth@gmail ~/Github/myRoR/userhub$ 
 
-#### make user PATH is correct
+#### make sure PATH is correct
 	limingth@gmail ~/Github/myRoR/userhub$ export PATH="/Applications/Postgres93.app/Contents/MacOS/bin:$PATH"
 	limingth@gmail ~/Github/myRoR/userhub$ which createuser
 	/Applications/Postgres93.app/Contents/MacOS/bin/createuser
@@ -899,7 +899,7 @@
 	 17 
 	 18     #require 'gmail_sender'
 	 19     gmail_account = GmailSender.new('akaedu.us@gmail.com', 'akaedu.us2013')
-	 20     gmail_account.send(:to => 'enroll@akaedu.us', :subject => @student.name, :content => @student.    email)
+	 20     gmail_account.send(:to => 'enroll@akaedu.us', :subject => @student.name, :content => @student.email)
 	 21 
 	 22     if @student.save
 	 23       redirect_to "/"

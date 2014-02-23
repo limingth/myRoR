@@ -481,21 +481,21 @@ http://www.postgresqltutorial.com/?wpdmact=process&did=MS5ob3RsaW5r
 	  7 end
 
 ### 
-	limingth@gmail ~/Github/myRoR/wikiful$ rails g model ArticalCategory
+	limingth@gmail ~/Github/myRoR/wikiful$ rails g model ArticleCategory
 	      invoke  active_record
-	      create    db/migrate/20131126020311_create_artical_categories.rb
-	      create    app/models/artical_category.rb
+	      create    db/migrate/20131126020311_create_article_categories.rb
+	      create    app/models/article_category.rb
 	      invoke    test_unit
-	      create      test/models/artical_category_test.rb
-	      create      test/fixtures/artical_categories.yml
+	      create      test/models/article_category_test.rb
+	      create      test/fixtures/article_categories.yml
 	limingth@gmail ~/Github/myRoR/wikiful$ 
 
 ### 
-	limingth@gmail ~/Github/myRoR/wikiful$ vi db/migrate/20131126020311_create_artical_categories.rb 
+	limingth@gmail ~/Github/myRoR/wikiful$ vi db/migrate/20131126020311_create_article_categories.rb 
 	limingth@gmail ~/Github/myRoR/wikiful$ 
-	  1 class CreateArticalCategories < ActiveRecord::Migration
+	  1 class CreateArticleCategories < ActiveRecord::Migration
 	  2   def change
-	  3     create_table :artical_categories do |t|
+	  3     create_table :article_categories do |t|
 	  4         t.belongs_to :article
 	  5         t.belongs_to :category
 	  6       t.timestamps
@@ -510,10 +510,10 @@ http://www.postgresqltutorial.com/?wpdmact=process&did=MS5ob3RsaW5r
 	   -> 0.0212s
 	==  CreateCategories: migrated (0.0214s) ======================================
 
-	==  CreateArticalCategories: migrating ========================================
-	-- create_table(:artical_categories)
+	==  CreateArticleCategories: migrating ========================================
+	-- create_table(:article_categories)
 	   -> 0.0101s
-	==  CreateArticalCategories: migrated (0.0118s) ===============================
+	==  CreateArticleCategories: migrated (0.0118s) ===============================
 
 	limingth@gmail ~/Github/myRoR/wikiful$   
 
@@ -530,26 +530,26 @@ http://www.postgresqltutorial.com/?wpdmact=process&did=MS5ob3RsaW5r
 	# Untracked files:
 	#   (use "git add <file>..." to include in what will be committed)
 	#
-	#	app/models/artical_category.rb
+	#	app/models/article_category.rb
 	#	app/models/category.rb
 	#	db/migrate/20131126015934_create_categories.rb
-	#	db/migrate/20131126020311_create_artical_categories.rb
-	#	test/fixtures/artical_categories.yml
+	#	db/migrate/20131126020311_create_article_categories.rb
+	#	test/fixtures/article_categories.yml
 	#	test/fixtures/categories.yml
-	#	test/models/artical_category_test.rb
+	#	test/models/article_category_test.rb
 	#	test/models/category_test.rb
 	no changes added to commit (use "git add" and/or "git commit -a")
 	limingth@gmail ~/Github/myRoR/wikiful$ git add .
 	limingth@gmail ~/Github/myRoR/wikiful$ git commit -a -m "added Category model"
 	[master 687a718] added Category model
 	 10 files changed, 171 insertions(+), 1 deletion(-)
-	 create mode 100644 wikiful/app/models/artical_category.rb
+	 create mode 100644 wikiful/app/models/article_category.rb
 	 create mode 100644 wikiful/app/models/category.rb
 	 create mode 100644 wikiful/db/migrate/20131126015934_create_categories.rb
-	 create mode 100644 wikiful/db/migrate/20131126020311_create_artical_categories.rb
-	 create mode 100644 wikiful/test/fixtures/artical_categories.yml
+	 create mode 100644 wikiful/db/migrate/20131126020311_create_article_categories.rb
+	 create mode 100644 wikiful/test/fixtures/article_categories.yml
 	 create mode 100644 wikiful/test/fixtures/categories.yml
-	 create mode 100644 wikiful/test/models/artical_category_test.rb
+	 create mode 100644 wikiful/test/models/article_category_test.rb
 	 create mode 100644 wikiful/test/models/category_test.rb
 	limingth@gmail ~/Github/myRoR/wikiful$ git push
 	Counting objects: 29, done.
