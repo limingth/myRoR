@@ -135,6 +135,12 @@ http://www.postgresqltutorial.com/?wpdmact=process&did=MS5ob3RsaW5r
 		psql (9.3.1)
 		Type "help" for help.
 		dvdrental=# 
+	
+* use \d to get all tables name from database
+		
+		dvdrental=# \d
+			list of relations
+		...
 
 * notice here the prompt is changed
 
