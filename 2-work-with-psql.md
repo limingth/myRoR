@@ -482,9 +482,8 @@ http://www.postgresqltutorial.com/?wpdmact=process&did=MS5ob3RsaW5r
 	  2 belongs_to :user
 	  3 has_many :article_categories
 	  4 has_many :categories, through: :article_categories
-	  5 validates :title, presence: true
-	  6 validates :content, presence: true	  
-	  7 end
+	  5 validates :name, presence: true
+	  6 end
 
 ### 
 	limingth@gmail ~/Github/myRoR/wikiful$ rails g model ArticleCategory
