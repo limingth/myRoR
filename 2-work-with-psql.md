@@ -169,7 +169,7 @@ http://www.postgresqltutorial.com/?wpdmact=process&did=MS5ob3RsaW5r
 
 ## The ActiveRecord ORM and Models in Rails
 
-## Configure Rails to Work with PostgreSQL
+## Configure Rails to Work with PostgreSQL #从这里开始正式开始wikiful项目的核心：model部分
 
 ### modify Gemfile
 	limingth@gmail ~/Github/myRoR/wikiful$ vi Gemfile
@@ -266,12 +266,13 @@ http://www.postgresqltutorial.com/?wpdmact=process&did=MS5ob3RsaW5r
 	 31   pool: 5
 	 32   timeout: 5000
 
-### create user
+### create user ＃这一步是以后完成login用的吧，我觉得作为初学者应该先把最本质的内容搞清楚，我当时在这里纠结了很久，所以建议初学者可以先跳过这一步，把注意力集中在我们这个wikiful项目的核心三个model：1，article 2,ArticleCategory 3,category
+	
 	limingth@gmail ~/Github/myRoR/wikiful$ createuser -s wikiful
 	limingth@gmail ~/Github/myRoR/wikiful$                          
 
-### init db
-	limingth@gmail ~/Github/myRoR/wikiful$ rake db:create
+### init db 
+	limingth@gmail ~/Github/myRoR/wikiful$ rake db:create ＃使用这个命令之后，请打开数据库查看新的数据库
 	limingth@gmail ~/Github/myRoR/wikiful$ 
 
 ### git status
@@ -310,7 +311,7 @@ http://www.postgresqltutorial.com/?wpdmact=process&did=MS5ob3RsaW5r
 
 ## Modeling Articles, Categories, and Users for Wikiful
 
-### create Article model
+### create Article model ＃咱们的第一个model：article，比较细心的初学者会发现老师在写model名字Article用的是大写A，其实生成之后你在model文件中看到的对应model名字会是article，小写的，我怕出错，小小的纠结了一下，事实是大小写没有关系，是一样的。
 	limingth@gmail ~/Github/myRoR/wikiful$ rails generate model Article title:string content:text
 	      invoke  active_record
 	      create    db/migrate/20131126012459_create_articles.rb
@@ -320,7 +321,7 @@ http://www.postgresqltutorial.com/?wpdmact=process&did=MS5ob3RsaW5r
 	      create      test/fixtures/articles.yml
 	limingth@gmail ~/Github/myRoR/wikiful$ 
 
-### create user model
+### create user model  
 	limingth@gmail ~/Github/myRoR/wikiful$ vi app/models/article.rb 
 	  1 class Article < ActiveRecord::Base
 	  2 belongs_to :user
@@ -389,7 +390,7 @@ http://www.postgresqltutorial.com/?wpdmact=process&did=MS5ob3RsaW5r
 	   a24f186..1856fe8  master -> master
 	limingth@gmail ~/Github/myRoR/wikiful$           
 
-### create ArticleCategory
+### create ArticleCategory ＃第二个model：ArticleCategory ＃这里我又发现一个现象：db／migration文件中相对应的文件名会变成复数，因为在数据库中创建table的时候table的名称会变成复数
 	limingth@gmail ~/Github/myRoR/wikiful$ rails g model ArticleCategory
 	      invoke  active_record
 	      create    db/migrate/20131126014146_create_article_categories.rb
@@ -466,7 +467,7 @@ http://www.postgresqltutorial.com/?wpdmact=process&did=MS5ob3RsaW5r
 	limingth@gmail ~/Github/myRoR/wikiful$ 
 
 
-### create Category model
+### create Category model ＃创建第三个model：Category
 	limingth@gmail ~/Github/myRoR/wikiful$ rails generate model Category title:string content:text
 	      invoke  active_record
 	      create    db/migrate/20131126015934_create_categories.rb
@@ -476,13 +477,13 @@ http://www.postgresqltutorial.com/?wpdmact=process&did=MS5ob3RsaW5r
 	      create      test/fixtures/categories.yml
 	limingth@gmail ~/Github/myRoR/wikiful$ 
 
-### modify Category files
+### modify Category files 
 	limingth@gmail ~/Github/myRoR/wikiful$ vi app/models/category.rb 
 	  1 class Category < ActiveRecord::Base
 	  2 belongs_to :user
 	  3 has_many :article_categories
 	  4 has_many :categories, through: :article_categories
-	  5 validates :name, presence: true
+	  5 validates :name, presence: true  ＃这里应该把“：name”改为“title”否则后面的rake db：seed会报错
 	  6 end
 
 ### 
@@ -689,7 +690,7 @@ http://www.postgresqltutorial.com/?wpdmact=process&did=MS5ob3RsaW5r
 	Your bundle is complete!
 	Use `bundle show [gemname]` to see where a bundled gem is installed.
 
-### write your own code for seeds.rb to generate data
+### write your own code for seeds.rb to generate data ＃这个seed文件里的name全部改为title
 	limingth@gmail ~/Github/myRoR/wikiful$ vi db/seeds.rb 
 	  1 # This file should contain all the record creation needed to seed the database with it    s default values.
 	  2 # The data can then be loaded with the rake db:seed (or created alongside the db with     db:setup).
