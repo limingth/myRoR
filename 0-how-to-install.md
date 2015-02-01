@@ -13,7 +13,12 @@ add this line to the end of ~/.bash_profile
     export PATH="/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/":$PATH
 
 * refer to: https://gist.github.com/olivierlacan/1195304
-    
+
+## Refer to this article for MAC OX yosemite
+* https://gorails.com/setup/osx/10.10-yosemite
+
+or you can do as follows
+
 ## Install RVM
 
 ### Check Version
