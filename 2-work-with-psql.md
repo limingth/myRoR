@@ -266,14 +266,17 @@ http://www.postgresqltutorial.com/?wpdmact=process&did=MS5ob3RsaW5r
 	 31   pool: 5
 	 32   timeout: 5000
 
-### create user
+### create user 
+
 	limingth@gmail ~/Github/myRoR/wikiful$ createuser -s wikiful
 	limingth@gmail ~/Github/myRoR/wikiful$                          
+	*student idea*我觉得作为初学者应该先把最本质的内容搞清楚，我当时在这里纠结了很久，所以建议初学者可以把注意力		focus on在我们这个wikiful项目的核心三个model：1，article 2,ArticleCategory 3,category
 
 ### init db
-	limingth@gmail ~/Github/myRoR/wikiful$ rake db:create
+	limingth@gmail ~/Github/myRoR/wikiful$ rake db:create*
 	limingth@gmail ~/Github/myRoR/wikiful$ 
-
+	*student idea*使用这个命令之后，请打开数据库查看新的数据库,注意之前数据库里面什么都没有
+	
 ### git status
 	limingth@gmail ~/Github/myRoR/wikiful$ git status
 	# On branch master
@@ -319,7 +322,7 @@ http://www.postgresqltutorial.com/?wpdmact=process&did=MS5ob3RsaW5r
 	      create      test/models/article_test.rb
 	      create      test/fixtures/articles.yml
 	limingth@gmail ~/Github/myRoR/wikiful$ 
-
+	
 ### create user model
 	limingth@gmail ~/Github/myRoR/wikiful$ vi app/models/article.rb 
 	  1 class Article < ActiveRecord::Base
@@ -399,6 +402,7 @@ http://www.postgresqltutorial.com/?wpdmact=process&did=MS5ob3RsaW5r
 	      create      test/fixtures/article_categories.yml
 	limingth@gmail ~/Github/myRoR/wikiful$ 
 
+
 ### modify migration file
 	limingth@gmail ~/Github/myRoR/wikiful$ vi db/migrate/20131126014146_create_article_categories.rb 
 
@@ -475,6 +479,7 @@ http://www.postgresqltutorial.com/?wpdmact=process&did=MS5ob3RsaW5r
 	      create      test/models/category_test.rb
 	      create      test/fixtures/categories.yml
 	limingth@gmail ~/Github/myRoR/wikiful$ 
+	
 
 ### modify Category files
 	limingth@gmail ~/Github/myRoR/wikiful$ vi app/models/category.rb 
@@ -482,7 +487,7 @@ http://www.postgresqltutorial.com/?wpdmact=process&did=MS5ob3RsaW5r
 	  2 belongs_to :user
 	  3 has_many :article_categories
 	  4 has_many :categories, through: :article_categories
-	  5 validates :name, presence: true
+	  5 validates :name, presence: true  *student idea*这里应该把“：name”改为“title”否则后面的rake db：seed会报错
 	  6 end
 
 ### 
@@ -716,7 +721,7 @@ http://www.postgresqltutorial.com/?wpdmact=process&did=MS5ob3RsaW5r
 	 23   category = Category.first(offset: rand(Category.count))
 	 24   a = Article.create(title: title, content: content, categories: [category,])
 	 25 end
-
+         *student idea*这个seed文件里的name全部改为title
 ### seed your data                      
 	limingth@gmail ~/Github/myRoR/wikiful$ rake db:seed
 
